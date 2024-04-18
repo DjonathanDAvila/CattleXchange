@@ -1,8 +1,8 @@
 package com.cattle.xchange.controllers;
 
+import com.cattle.xchange.domain.user.UserService;
 import com.cattle.xchange.domain.user.dtos.UserInsertDTO;
 import com.cattle.xchange.domain.user.dtos.UserMinDTO;
-import com.cattle.xchange.domain.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
