@@ -17,7 +17,7 @@ public class UserController {
     private UserService service;
 
     @PostMapping
-    public ResponseEntity<UserMinDTO> insert(@RequestBody UserInsertDTO dto) {
+    public ResponseEntity<com.cattle.xchange.domain.user.dtos.UserMinDTO> insert(@RequestBody UserInsertDTO dto) {
         return ResponseEntity.ok(
                 new UserMinDTO(service.insert(
                         dto.document(),
@@ -33,6 +33,13 @@ public class UserController {
     public ResponseEntity<UserMinDTO> findUserById(@PathVariable UUID id) {
         return ResponseEntity.ok(
                 new UserMinDTO(service.findUserById(id))
+        );
+    }
+
+    @GetMapping("/{cpf}")
+    public ResponseEntity<UserMinDTO> findByCpf(@PathVariable String cpf) {
+        return ResponseEntity.ok(
+                new UserMinDTO(service.findByCpf(cpf))
         );
     }
 }
