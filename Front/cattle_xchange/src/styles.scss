@@ -1,0 +1,22 @@
+@use '@angular/material' as mat;
+
+@include mat.core();
+
+$custom-dark-green: mat.define-palette(mat.$green-palette, 900, 700, 500, 300);
+$cattle_test_init-accent: mat.define-palette(mat.$light-green-palette, A200, A100, A400);
+$cattle_test_init-warn: mat.define-palette(mat.$red-palette);
+
+$cattle_test_init-theme: mat.define-light-theme((
+  color: (
+    primary: $custom-dark-green,
+    accent: $cattle_test_init-accent,
+    warn: $cattle_test_init-warn,
+  ),
+  typography: mat.define-typography-config(),
+  density: 0
+));
+
+@include mat.all-component-themes($cattle_test_init-theme);
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
