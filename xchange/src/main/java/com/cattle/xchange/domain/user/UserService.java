@@ -22,7 +22,18 @@ public class UserService {
     @Transactional
     public User insert(String document, String name, String lastName, String email, String password) {
         return repository.save(new User(
-                null, document, name, lastName, email, password, LocalDate.now()
+                document, name, lastName, email, password, LocalDate.now()
         ));
+    }
+    @Transactional
+    public User findByCpf(String document) {
+        User user = repository.findByDocument(document);
+
+        if (repository != null) {
+            throw new IllegalArgumentException("CPF não Existe");
+        }
+
+        return user;
+
     }
 }

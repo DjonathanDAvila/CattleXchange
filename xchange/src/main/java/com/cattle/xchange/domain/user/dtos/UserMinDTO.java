@@ -1,7 +1,6 @@
 package com.cattle.xchange.domain.user.dtos;
 
 import com.cattle.xchange.domain.user.User;
-import jakarta.persistence.Column;
 
 import java.time.LocalDate;
 import java.util.UUID;

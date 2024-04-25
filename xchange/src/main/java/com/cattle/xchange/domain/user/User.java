@@ -36,4 +36,14 @@ public class User {
 
     @Column(name = "bd_createdate")
     private LocalDate creationDate;
+
+    public User(String document, String name, String lastName, String email, String password, LocalDate now) {
+        this.document = document;
+        this.name = name;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
+        this.creationDate = now;
+
+    }
 }
