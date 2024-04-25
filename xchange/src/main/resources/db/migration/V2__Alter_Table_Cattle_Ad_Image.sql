@@ -1,0 +1,2 @@
+ALTER TABLE TIMAGE_AD
+ADD bd_sequence INTEGER AFTER bd_codAd
