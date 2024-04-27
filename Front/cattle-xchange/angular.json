@@ -3,11 +3,18 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "cattle_xchange": {
+    "cattle-xchange": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
-          "style": "scss"
+          "style": "scss",
+          "standalone": false
+        },
+        "@schematics/angular:directive": {
+          "standalone": false
+        },
+        "@schematics/angular:pipe": {
+          "standalone": false
         }
       },
       "root": "",
@@ -17,7 +24,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/cattle_xchange",
+            "outputPath": "dist/cattle-xchange",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -67,10 +74,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "cattle_xchange:build:production"
+              "buildTarget": "cattle-xchange:build:production"
             },
             "development": {
-              "buildTarget": "cattle_xchange:build:development"
+              "buildTarget": "cattle-xchange:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -78,7 +85,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "cattle_xchange:build"
+            "buildTarget": "cattle-xchange:build"
           }
         },
         "test": {
@@ -104,6 +111,6 @@
     }
   },
   "cli": {
-    "analytics": "cc08fec6-14dd-4d47-9da3-a68dd9370edf"
+    "analytics": "d5d4c43f-9a3d-4658-b787-9a74230e136d"
   }
 }
