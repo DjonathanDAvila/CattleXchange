@@ -1,1 +1,33 @@
-<app-header></app-header>
+<header>
+  <app-header></app-header>
+</header>
+<main class="container">
+  <div class="background-img">
+    <img src="../../../../assets/home-background.png" alt="" />
+  </div>
+  <div class="filter-card">
+    <mat-card>
+      <mat-card-content class="card-title"
+        >FILTRE LOTES DE ACORDO COM SEU GOSTO</mat-card-content
+      >
+      <mat-card-content class="card-content">
+        <mat-form-field class="select">
+          <mat-label>Sexo</mat-label>
+          <mat-select multiple>
+            <mat-option value="MALE">Macho</mat-option>
+            <mat-option value="FEMALE">Fêmea</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field class="select">
+          <mat-label>Cidade</mat-label>
+          <mat-select multiple>
+            @for (city of cities; track city) {
+            <mat-option [value]="city">{{ city }}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div class="apagar"></div>
+</main>

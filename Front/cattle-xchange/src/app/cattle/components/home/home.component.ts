@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { NonNullableFormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-home',
@@ -7,4 +8,15 @@ import { Component } from '@angular/core';
 })
 export class HomeComponent {
 
+  cities: string[] = ['São Paulo', 'Rio de Janeiro', 'Blumenau']
+
+  form = this.formBuilder.group({
+    sex: [[]],
+    city: [''],
+  });
+
+
+  constructor(
+    private formBuilder: NonNullableFormBuilder
+  ) {}
 }

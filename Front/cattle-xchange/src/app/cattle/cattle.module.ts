@@ -18,6 +18,6 @@ import { HomeComponent } from './components/home/home.component';
     CattleRoutingModule,
     SharedModule,
     AppMaterialModule
-  ]
+  ],
 })
 export class CattleModule { }
