@@ -1,0 +1,18 @@
+.nav-links {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  font-size: large;
+}
+
+.nav-links > span {
+  padding-right: 5%;
+  cursor: pointer;
+}
+
+.nav-links > span:hover {
+  transform: scale(1.05);
+  transition: transform 0.3s;
+}
