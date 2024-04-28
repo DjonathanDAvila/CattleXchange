@@ -12,29 +12,3 @@
   z-index: -1;
 }
 
-.filter-card {
-  margin-top: -90px;
-  margin-left: 15%;
-  width: 70%;
-  text-align: center;
-  z-index: 1;
-  height: 150px;
-  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-}
-
-.filter-card > .card-title {
-  font-weight: bold;
-}
-
-.card-content {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  text-align: center;
-  padding-top: 25px;
-}
-
-.card-content > .select {
-  width: 20%;
-}
-
