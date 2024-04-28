@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -18,6 +19,11 @@ public class UserService {
     public User findUserById(UUID id) {
         return repository.findById(id).orElseThrow();
     }
+
+    @Transactional
+    public List<User> findAll() {
+        return repository.findAll();
+    };
 
     @Transactional
     public User insert(String document, String name, String lastName, String email, String password) {
@@ -34,6 +40,5 @@ public class UserService {
         }
 
         return user;
-
     }
 }
