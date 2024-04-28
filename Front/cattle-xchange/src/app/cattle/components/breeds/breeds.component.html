@@ -1,9 +1,13 @@
 <div class="breed-cards-list">
-  <mat-card class="breed-card" *ngFor="let breed of breeds;">
-    <img mat-card-image src="https://www.lancerural.com.br/wp-content/uploads/2021/06/ANGUS.jpg" alt="Photo of a {{ breed }}">
+  <mat-card class="breed-card" *ngFor="let breed of breeds" (click)="filterByBreed(breed.breedName)">
+    <img
+      mat-card-image
+      src="{{ breed.imageUrl }}"
+      alt="Photo of a {{ breed.breedName }}"
+    />
     <mat-card-content>
       <p>
-        {{ breed }}
+        {{ breed.breedName }}
       </p>
     </mat-card-content>
   </mat-card>

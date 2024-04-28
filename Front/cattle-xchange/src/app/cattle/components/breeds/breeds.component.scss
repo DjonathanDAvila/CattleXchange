@@ -1,8 +1,8 @@
 .breed-cards-list {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   gap: 3%;
-
   width: 80%;
   margin-top: 3%;
   margin-left: 14%;
@@ -11,9 +11,15 @@
 .breed-cards-list > .breed-card {
   height: 20%;
   width: 20%;
+  cursor: pointer;
+  transition: box-shadow 0.3s ease;
+}
+
+.breed-cards-list > .breed-card:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .breed-cards-list > .breed-card > img {
-  height: 60%;
+  height: 180px;
   width: 100%;
 }
