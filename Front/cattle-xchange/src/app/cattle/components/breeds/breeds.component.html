@@ -1,0 +1,14 @@
+<div class="breed-cards-list">
+  <mat-card class="breed-card" *ngFor="let breed of breeds" (click)="filterByBreed(breed.breedName)">
+    <img
+      mat-card-image
+      src="{{ breed.imageUrl }}"
+      alt="Photo of a {{ breed.breedName }}"
+    />
+    <mat-card-content>
+      <p>
+        {{ breed.breedName }}
+      </p>
+    </mat-card-content>
+  </mat-card>
+</div>

@@ -6,29 +6,27 @@
     <form [formGroup]="form" class="form">
       <mat-form-field class="form-field">
         <mat-label>Sexo</mat-label>
-        <mat-select multiple>
+        <mat-select multiple formControlName="sex">
           <mat-option value="MALE">Macho</mat-option>
           <mat-option value="FEMALE">Fêmea</mat-option>
         </mat-select>
       </mat-form-field>
       <mat-form-field class="form-field">
         <mat-label>Cidade</mat-label>
-        <mat-select multiple>
+        <mat-select multiple formControlName="city">
           @for (city of cities; track city) {
           <mat-option [value]="city">{{ city }}</mat-option>
           }
         </mat-select>
       </mat-form-field>
       <mat-form-field class="form-field">
-        <mat-label>de $</mat-label>
-        <input matInput type="number" />
+        <input matInput type="number" placeholder="de $" formControlName="initialPrice"/>
       </mat-form-field>
       <mat-form-field class="form-field">
-        <mat-label>até $</mat-label>
-        <input matInput type="number" />
+        <input matInput type="number" placeholder="até $" formControlName="finalPrice"/>
       </mat-form-field>
       <mat-card-actions class="button-actions">
-        <button mat-raised-button color="primary">Filtrar</button>
+        <button mat-raised-button color="primary" (click)="filter()">Filtrar</button>
       </mat-card-actions>
     </form>
   </mat-card-content>
