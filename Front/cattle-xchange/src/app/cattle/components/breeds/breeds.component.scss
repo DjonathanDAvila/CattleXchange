@@ -1,0 +1,19 @@
+.breed-cards-list {
+  display: flex;
+  flex-direction: row;
+  gap: 3%;
+
+  width: 80%;
+  margin-top: 3%;
+  margin-left: 14%;
+}
+
+.breed-cards-list > .breed-card {
+  height: 20%;
+  width: 20%;
+}
+
+.breed-cards-list > .breed-card > img {
+  height: 60%;
+  width: 100%;
+}
