@@ -57,4 +57,11 @@ public class CattleAdService {
     public void delete(UUID id){
         _cattleRepository.deleteById(id);
     }
+
+    public Boolean atualizaStatus(UUID id, CattleStatusEnum status){
+        CattleAd cattleAd = _cattleRepository.findById(id).get();
+        cattleAd.setStatus(status);
+        _cattleRepository.save(cattleAd);
+        return true;
+    }
 }

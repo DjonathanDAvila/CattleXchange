@@ -3,6 +3,7 @@ package com.cattle.xchange.domain.cattle;
 import com.cattle.xchange.domain.cattle.cattleAd.CattleAd;
 import com.cattle.xchange.domain.cattle.cattleAd.dtos.CattleAdImageInsertDTO;
 import com.cattle.xchange.domain.cattle.cattleAd.dtos.CattleAdImageMinDTO;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jdk.jfr.TransitionFrom;
 import lombok.AllArgsConstructor;
@@ -26,7 +27,7 @@ public class CattleAdImage
 
 //    @Column(name = "bd_codad")
 //    private UUID cattleAdId;
-
+    @JsonIgnore
     @ManyToOne // Alteração para FetchType.LAZY
     @JoinColumn(name = "bd_codad")
     private CattleAd cattleAd;
