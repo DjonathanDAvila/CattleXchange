@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -17,7 +18,7 @@ public class UserController {
     private UserService service;
 
     @PostMapping
-    public ResponseEntity<com.cattle.xchange.domain.user.dtos.UserMinDTO> insert(@RequestBody UserInsertDTO dto) {
+    public ResponseEntity<UserMinDTO> insert(@RequestBody UserInsertDTO dto) {
         return ResponseEntity.ok(
                 new UserMinDTO(service.insert(
                         dto.document(),
@@ -29,6 +30,13 @@ public class UserController {
         );
     }
 
+    @GetMapping("/")
+    public ResponseEntity<List<UserMinDTO>> findAll() {
+        return ResponseEntity.ok(
+                service.findAll().stream().map(UserMinDTO::new).toList()
+        );
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<UserMinDTO> findUserById(@PathVariable UUID id) {
         return ResponseEntity.ok(
@@ -36,7 +44,7 @@ public class UserController {
         );
     }
 
-    @GetMapping("/{cpf}")
+    @GetMapping("/cpf/{cpf}")
     public ResponseEntity<UserMinDTO> findByCpf(@PathVariable String cpf) {
         return ResponseEntity.ok(
                 new UserMinDTO(service.findByCpf(cpf))
