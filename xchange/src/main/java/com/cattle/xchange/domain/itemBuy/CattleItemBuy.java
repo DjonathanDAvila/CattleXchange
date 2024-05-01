@@ -2,6 +2,7 @@ package com.cattle.xchange.domain.itemBuy;
 
 import com.cattle.xchange.domain.cattleBuy.CattleBuy;
 import com.cattle.xchange.domain.cattle.cattleAd.CattleAd;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,13 +18,24 @@ import java.util.UUID;
 public class CattleItemBuy {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "bd_coditem")
     private UUID id;
 
+    @JsonIgnore
     @ManyToOne
-    @JoinColumn(name = "bd_codBuy")
+    @JoinColumn(name = "bd_codbuy")
     private CattleBuy cattleBuy;
 
-    @ManyToOne
-    @JoinColumn(name = "bd_codAd")
+    @OneToOne
+    @JoinColumn(name = "bd_codad")
     private CattleAd cattleAd;
+
+    @Column(name = "bd_valuead")
+    private double valueAd;
+
+    public CattleItemBuy(CattleBuy cattleBuy, CattleAd cattleAd, double valueAd) {
+        this.cattleBuy = cattleBuy;
+        this.cattleAd = cattleAd;
+        this.valueAd = valueAd;
+    }
 }
