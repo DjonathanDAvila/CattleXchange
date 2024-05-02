@@ -8,6 +8,7 @@ import com.cattle.xchange.domain.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.data.domain.Pageable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,10 +50,10 @@ public class CattleAdController {
 
 
     // TODO: Get all
-    @GetMapping("/")
-    public ResponseEntity<List<CattleAdMinDTO>> findAllCattleAds()
+    @GetMapping
+    public ResponseEntity<List<CattleAdMinDTO>> findAllCattleAds(Pageable pageable)
     {
-        List<CattleAd> cattleList = _cattleService.findCattleAds();
+        List<CattleAd> cattleList = _cattleService.findCattleAds(pageable);
 
         if (cattleList == null || cattleList.isEmpty())
             return ResponseEntity.noContent().build();
