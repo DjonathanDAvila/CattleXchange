@@ -9,9 +9,9 @@ import jakarta.validation.constraints.Future;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.data.domain.Pageable;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.awt.print.Pageable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,8 +29,8 @@ public class CattleAdService {
         return _cattleRepository.findById(id);
     }
 
-    public List<CattleAd> findCattleAds() {
-        return _cattleRepository.findAll();
+    public List<CattleAd> findCattleAds(Pageable pageable) {
+        return _cattleRepository.findAll(pageable).toList();
     }
 
     @Transactional
