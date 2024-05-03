@@ -2,6 +2,7 @@ package com.cattle.xchange.controllers;
 
 import com.cattle.xchange.domain.user.UserService;
 import com.cattle.xchange.domain.user.dtos.UserInsertDTO;
+import com.cattle.xchange.domain.user.dtos.UserLoginDTO;
 import com.cattle.xchange.domain.user.dtos.UserMinDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -48,6 +49,13 @@ public class UserController {
     public ResponseEntity<UserMinDTO> findByCpf(@PathVariable String cpf) {
         return ResponseEntity.ok(
                 new UserMinDTO(service.findByCpf(cpf))
+        );
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<UserMinDTO> login(@RequestBody UserLoginDTO dto) {
+        return ResponseEntity.ok(
+                new UserMinDTO(service.login(dto))
         );
     }
 }
