@@ -1,9 +1,7 @@
-package com.cattle.xchange.domain.cattle.cattleAd;
+package com.cattle.xchange.domain.cattle;
 
-import com.cattle.xchange.domain.cattle.CattleAdImage;
-import com.cattle.xchange.domain.cattle.cattleAd.enums.BreedEnum;
-import com.cattle.xchange.domain.cattle.cattleAd.enums.CattleStatusEnum;
-import com.cattle.xchange.domain.user.User;
+import com.cattle.xchange.domain.cattle.enums.BreedEnum;
+import com.cattle.xchange.domain.cattle.enums.CattleStatusEnum;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -48,8 +46,11 @@ public class CattleAd {
     @Column(name = "bd_coduser")
     private UUID userCod;
 
-//    @Transient
-//    private User user;
+    @Column(name = "bd_city")
+    private String city;
+
+    @Column(name = "bd_state")
+    private String state;
 
     @Column(name = "bd_addate")
     private LocalDate adDate;

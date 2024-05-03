@@ -1,10 +1,8 @@
 package com.cattle.xchange.domain.cattleBuy;
 
-import com.cattle.xchange.domain.cattle.cattleAd.CattleAd;
-import com.cattle.xchange.domain.cattle.cattleAd.CattleAdService;
-import com.cattle.xchange.domain.cattle.cattleAd.enums.CattleStatusEnum;
+import com.cattle.xchange.domain.cattle.CattleAd;
+import com.cattle.xchange.domain.cattle.CattleAdService;
 import com.cattle.xchange.domain.cattleBuy.dtos.CattleBuyInsertDTO;
-import com.cattle.xchange.domain.itemBuy.CattleItemBuy;
 import com.cattle.xchange.domain.itemBuy.CattleItemBuyService;
 import com.cattle.xchange.domain.itemBuy.dtos.ItemBuyInsertDTO;
 import com.cattle.xchange.domain.user.User;

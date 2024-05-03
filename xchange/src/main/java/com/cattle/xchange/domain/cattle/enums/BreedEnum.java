@@ -1,4 +1,4 @@
-package com.cattle.xchange.domain.cattle.cattleAd.enums;
+package com.cattle.xchange.domain.cattle.enums;
 
 public enum BreedEnum {
     ANGUS,
