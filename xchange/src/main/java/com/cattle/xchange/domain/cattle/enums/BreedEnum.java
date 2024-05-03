@@ -10,5 +10,6 @@ public enum BreedEnum {
     SIMMENTAL,
     ANGUS_ABERDEEN_POLLED,
     BRANGUS,
-    GUZERA
+    GUZERA,
+    WAGYU
 }
