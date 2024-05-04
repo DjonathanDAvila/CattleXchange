@@ -1,17 +1,13 @@
-package com.cattle.xchange.domain.cattle.cattleAd;
+package com.cattle.xchange.domain.cattle;
 
-import com.cattle.xchange.domain.cattle.CattleAdImage;
-import com.cattle.xchange.domain.cattle.cattleAd.dtos.CattleAdImageInsertDTO;
-import com.cattle.xchange.domain.cattle.cattleAd.dtos.CattleAdImageMinDTO;
-import com.cattle.xchange.domain.cattle.cattleAd.enums.BreedEnum;
-import com.cattle.xchange.domain.cattle.cattleAd.enums.CattleStatusEnum;
-import jakarta.validation.constraints.Future;
+import com.cattle.xchange.domain.cattle.dtos.CattleAdImageInsertDTO;
+import com.cattle.xchange.domain.cattle.enums.BreedEnum;
+import com.cattle.xchange.domain.cattle.enums.CattleStatusEnum;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.data.domain.Pageable;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.awt.print.Pageable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,15 +25,15 @@ public class CattleAdService {
         return _cattleRepository.findById(id);
     }
 
-    public List<CattleAd> findCattleAds() {
-        return _cattleRepository.findAll();
+    public List<CattleAd> findCattleAds(Pageable pageable) {
+        return _cattleRepository.findAll(pageable).toList();
     }
 
     @Transactional
-    public CattleAd insert(String title, String desc, double unitValue, int quantity, BreedEnum breed, char sex, UUID userCod, CattleStatusEnum status, List<CattleAdImageInsertDTO> imagesDTO) {
+    public CattleAd insert(String title, String desc, double unitValue, int quantity, BreedEnum breed, char sex, UUID userCod, String city, String state, CattleStatusEnum status, List<CattleAdImageInsertDTO> imagesDTO) {
 
         var cattle = new CattleAd(
-                null, title, desc, unitValue, quantity, breed, sex, userCod, LocalDate.now(), status, new ArrayList<>()
+                null, title, desc, unitValue, quantity, breed, sex, userCod, city, state, LocalDate.now(), status, new ArrayList<>()
         );
 
         var images = imagesDTO.stream()

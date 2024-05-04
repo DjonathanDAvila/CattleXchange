@@ -1,13 +1,14 @@
 package com.cattle.xchange.controllers;
 
-import com.cattle.xchange.domain.cattle.cattleAd.CattleAd;
-import com.cattle.xchange.domain.cattle.cattleAd.CattleAdService;
-import com.cattle.xchange.domain.cattle.cattleAd.dtos.CattleAdInsertDTO;
-import com.cattle.xchange.domain.cattle.cattleAd.dtos.CattleAdMinDTO;
+import com.cattle.xchange.domain.cattle.CattleAd;
+import com.cattle.xchange.domain.cattle.CattleAdService;
+import com.cattle.xchange.domain.cattle.dtos.CattleAdInsertDTO;
+import com.cattle.xchange.domain.cattle.dtos.CattleAdMinDTO;
 import com.cattle.xchange.domain.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.data.domain.Pageable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,6 +42,8 @@ public class CattleAdController {
                         dto.breed(),
                         dto.sex(),
                         dto.userCod(),
+                        dto.city(),
+                        dto.state(),
                         dto.status(),
                         dto.cattleAdImages()
                 ))
@@ -49,10 +52,10 @@ public class CattleAdController {
 
 
     // TODO: Get all
-    @GetMapping("/")
-    public ResponseEntity<List<CattleAdMinDTO>> findAllCattleAds()
+    @GetMapping
+    public ResponseEntity<List<CattleAdMinDTO>> findAllCattleAds(Pageable pageable)
     {
-        List<CattleAd> cattleList = _cattleService.findCattleAds();
+        List<CattleAd> cattleList = _cattleService.findCattleAds(pageable);
 
         if (cattleList == null || cattleList.isEmpty())
             return ResponseEntity.noContent().build();
