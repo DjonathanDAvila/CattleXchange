@@ -1,6 +1,7 @@
-package com.cattle.xchange.domain.cattle;
+package com.cattle.xchange.domain.cattleAdImage;
 
-import com.cattle.xchange.domain.cattle.dtos.CattleAdImageInsertDTO;
+import com.cattle.xchange.domain.cattleAd.CattleAd;
+import com.cattle.xchange.domain.cattleAdImage.dtos.CattleAdImageInsertDTO;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

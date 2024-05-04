@@ -1,9 +1,10 @@
-package com.cattle.xchange.domain.cattle;
+package com.cattle.xchange.domain.cattleAd;
 
-import com.cattle.xchange.domain.cattle.dtos.CattleAdImageInsertDTO;
-import com.cattle.xchange.domain.cattle.enums.BreedEnum;
-import com.cattle.xchange.domain.cattle.enums.CattleStatusEnum;
-import com.cattle.xchange.domain.cattle.enums.SexEnum;
+import com.cattle.xchange.domain.cattleAdImage.CattleAdImage;
+import com.cattle.xchange.domain.cattleAdImage.dtos.CattleAdImageInsertDTO;
+import com.cattle.xchange.domain.cattleAd.enums.BreedEnum;
+import com.cattle.xchange.domain.cattleAd.enums.CattleStatusEnum;
+import com.cattle.xchange.domain.cattleAd.enums.SexEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
@@ -64,7 +65,7 @@ public class CattleAdService {
     }
 
     @Transactional(readOnly = true)
-    public Page<CattleAd> findByCriteria(String city, String state, Double maxPrice, BreedEnum breed, Pageable pageable) {
-        return _cattleRepository.findByCriteria(city, state, maxPrice, breed, pageable);
+    public Page<CattleAd> findByCriteria(SexEnum sex, String city, String state, Double maxPrice, BreedEnum breed, Pageable pageable) {
+        return _cattleRepository.findByCriteria(sex, city, state, maxPrice, breed, pageable);
     }
 }

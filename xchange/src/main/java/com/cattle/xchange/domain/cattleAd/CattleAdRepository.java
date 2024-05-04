@@ -1,4 +1,4 @@
-package com.cattle.xchange.domain.cattle;
+package com.cattle.xchange.domain.cattleAd;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
