@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 import java.util.UUID;
 
 @Repository
-interface CattleAdRepository extends JpaRepository<CattleAd, UUID> {
+interface CattleAdRepository extends JpaRepository<CattleAd, UUID>, CattleAdCustomRepository {
     Page<CattleAd> findAll(Pageable pageable);
 }

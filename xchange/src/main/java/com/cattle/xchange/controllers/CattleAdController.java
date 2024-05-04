@@ -27,8 +27,7 @@ public class CattleAdController {
 
 
     @PostMapping("/")
-    public ResponseEntity<CattleAdMinDTO> insert(@RequestBody CattleAdInsertDTO dto)
-    {
+    public ResponseEntity<CattleAdMinDTO> insert(@RequestBody CattleAdInsertDTO dto) {
         if (_userService.findUserById(dto.userCod()) == null)
             return ResponseEntity.notFound().build();
 
@@ -51,10 +50,8 @@ public class CattleAdController {
     }
 
 
-    // TODO: Get all
     @GetMapping
-    public ResponseEntity<List<CattleAdMinDTO>> findAllCattleAds(Pageable pageable)
-    {
+    public ResponseEntity<List<CattleAdMinDTO>> findAllCattleAds(Pageable pageable) {
         List<CattleAd> cattleList = _cattleService.findCattleAds(pageable);
 
         if (cattleList == null || cattleList.isEmpty())
@@ -63,12 +60,10 @@ public class CattleAdController {
 
         List<CattleAdMinDTO> cattleListDTO = new ArrayList<>();
 
-        for (CattleAd cattle : cattleList)
-        {
+        for (CattleAd cattle : cattleList) {
             CattleAdMinDTO cattleDTO = new CattleAdMinDTO(cattle);
             cattleListDTO.add(cattleDTO);
         }
-
 
 
         return ResponseEntity.ok(cattleListDTO);
@@ -89,7 +84,7 @@ public class CattleAdController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity deleteById(@PathVariable UUID id){
+    public ResponseEntity deleteById(@PathVariable UUID id) {
 
         if (!_cattleService.findCattleAdById(id).isPresent())
             return ResponseEntity.notFound().build();
@@ -98,5 +93,17 @@ public class CattleAdController {
         _cattleService.delete(id);
 
         return ResponseEntity.ok().body("Anúncio removido");
+    }
+
+    @GetMapping("/search")
+    public ResponseEntity<List<CattleAdMinDTO>> findByCriteria(
+            @RequestParam String city
+    ) {
+        return ResponseEntity.ok(
+                _cattleService.findByCriteria(city)
+                        .stream()
+                        .map(CattleAdMinDTO::new)
+                        .toList()
+        );
     }
 }

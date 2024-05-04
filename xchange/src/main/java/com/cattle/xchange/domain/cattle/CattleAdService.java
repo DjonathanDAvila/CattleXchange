@@ -60,4 +60,9 @@ public class CattleAdService {
         _cattleRepository.save(cattleAd);
         return true;
     }
+
+    @Transactional(readOnly = true)
+    public List<CattleAd> findByCriteria(String city) {
+        return _cattleRepository.findByCriteria(city);
+    }
 }
