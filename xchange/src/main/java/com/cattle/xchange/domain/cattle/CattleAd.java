@@ -2,6 +2,7 @@ package com.cattle.xchange.domain.cattle;
 
 import com.cattle.xchange.domain.cattle.enums.BreedEnum;
 import com.cattle.xchange.domain.cattle.enums.CattleStatusEnum;
+import com.cattle.xchange.domain.cattle.enums.SexEnum;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -40,8 +41,9 @@ public class CattleAd {
     @Column(name = "bd_breed")
     private BreedEnum breed;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "bd_sex")
-    private char sex;
+    private SexEnum sex;
 
     @Column(name = "bd_coduser")
     private UUID userCod;

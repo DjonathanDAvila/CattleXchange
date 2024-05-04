@@ -2,6 +2,7 @@ package com.cattle.xchange.domain.cattle.dtos;
 
 import com.cattle.xchange.domain.cattle.enums.BreedEnum;
 import com.cattle.xchange.domain.cattle.enums.CattleStatusEnum;
+import com.cattle.xchange.domain.cattle.enums.SexEnum;
 import jakarta.validation.constraints.NotBlank;
 
 import java.time.LocalDate;
@@ -20,7 +21,7 @@ public record CattleAdInsertDTO(
         @NotBlank
         BreedEnum breed,
         @NotBlank
-        char sex,
+        SexEnum sex,
         @NotBlank
         UUID userCod,
         @NotBlank
