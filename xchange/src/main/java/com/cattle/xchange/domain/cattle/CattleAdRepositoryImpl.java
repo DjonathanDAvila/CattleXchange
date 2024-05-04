@@ -9,7 +9,7 @@ import java.util.List;
 class CattleAdRepositoryImpl extends RepositoryBaseImpl implements CattleAdCustomRepository {
 
     @Override
-    public List<CattleAd> findByCriteria(String city, String state) {
+    public List<CattleAd> findByCriteria(String city, String state, Double maxPrice) {
         QCattleAd qCattleAd = QCattleAd.cattleAd;
         BooleanBuilder whereClause = new BooleanBuilder();
 
@@ -23,6 +23,10 @@ class CattleAdRepositoryImpl extends RepositoryBaseImpl implements CattleAdCusto
 
         if (state != null) {
             whereClause.and(qCattleAd.state.eq(state));
+        }
+
+        if (maxPrice != null) {
+            whereClause.and(qCattleAd.unitValue.loe(maxPrice));
         }
 
         return select(qCattleAd)

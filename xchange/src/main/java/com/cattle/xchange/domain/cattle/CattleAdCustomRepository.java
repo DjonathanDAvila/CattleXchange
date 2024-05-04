@@ -4,5 +4,5 @@ import java.util.List;
 
 interface CattleAdCustomRepository {
 
-    List<CattleAd> findByCriteria(String city, String state);
+    List<CattleAd> findByCriteria(String city, String state, Double maxPrice);
 }

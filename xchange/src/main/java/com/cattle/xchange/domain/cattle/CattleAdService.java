@@ -62,7 +62,7 @@ public class CattleAdService {
     }
 
     @Transactional(readOnly = true)
-    public List<CattleAd> findByCriteria(String city, String state) {
-        return _cattleRepository.findByCriteria(city, state);
+    public List<CattleAd> findByCriteria(String city, String state, Double maxPrice) {
+        return _cattleRepository.findByCriteria(city, state, maxPrice);
     }
 }
