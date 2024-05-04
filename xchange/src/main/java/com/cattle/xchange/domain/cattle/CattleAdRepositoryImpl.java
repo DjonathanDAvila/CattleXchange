@@ -2,6 +2,7 @@ package com.cattle.xchange.domain.cattle;
 
 import com.cattle.xchange.domain.cattle.enums.CattleStatusEnum;
 import com.cattle.xchange.domain.common.RepositoryBaseImpl;
+import com.querydsl.core.BooleanBuilder;
 
 import java.util.List;
 
@@ -10,14 +11,19 @@ class CattleAdRepositoryImpl extends RepositoryBaseImpl implements CattleAdCusto
     @Override
     public List<CattleAd> findByCriteria(String city) {
         QCattleAd qCattleAd = QCattleAd.cattleAd;
-        var query = select(qCattleAd)
-                    .from(qCattleAd)
-                    .where(qCattleAd.status.eq(CattleStatusEnum.ACTIVE));
+        BooleanBuilder whereClause = new BooleanBuilder();
+
+        // Always filter by active CattleAds
+        whereClause.and(qCattleAd.status.eq(CattleStatusEnum.ACTIVE));
 
         if (city != null) {
-            query.where(qCattleAd.city.eq(city));
+            whereClause.and(qCattleAd.city.eq(city));
         }
 
-        return query.fetch();
+        return select(qCattleAd)
+                .from(qCattleAd)
+                .where(whereClause)
+                .fetch();
     }
+
 }
