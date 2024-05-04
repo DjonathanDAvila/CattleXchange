@@ -1,10 +1,11 @@
 package com.cattle.xchange.domain.user;
 
 import com.cattle.xchange.domain.user.dtos.UserLoginDTO;
-import com.cattle.xchange.domain.user.dtos.UserMinDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import com.cattle.xchange.exception.ResourceNotFoundException;
+import com.cattle.xchange.exception.handler.GlobalExceptionHandler;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -19,7 +20,7 @@ public class UserService {
 
     @Transactional(readOnly = true)
     public User findUserById(UUID id) {
-        return repository.findById(id).orElseThrow();
+        return repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Usuário não encontrado."));
     }
 
     @Transactional
