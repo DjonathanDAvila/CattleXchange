@@ -1,10 +1,11 @@
 package com.cattle.xchange.controllers;
 
-import com.cattle.xchange.domain.cattle.CattleAd;
-import com.cattle.xchange.domain.cattle.CattleAdService;
-import com.cattle.xchange.domain.cattle.dtos.CattleAdInsertDTO;
-import com.cattle.xchange.domain.cattle.dtos.CattleAdMinDTO;
-import com.cattle.xchange.domain.cattle.enums.BreedEnum;
+import com.cattle.xchange.domain.cattleAd.CattleAd;
+import com.cattle.xchange.domain.cattleAd.CattleAdService;
+import com.cattle.xchange.domain.cattleAd.dtos.CattleAdInsertDTO;
+import com.cattle.xchange.domain.cattleAd.dtos.CattleAdMinDTO;
+import com.cattle.xchange.domain.cattleAd.enums.BreedEnum;
+import com.cattle.xchange.domain.cattleAd.enums.SexEnum;
 import com.cattle.xchange.domain.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -99,6 +100,7 @@ public class CattleAdController {
 
     @GetMapping("/search")
     public ResponseEntity<Page<CattleAdMinDTO>> findByCriteria(
+            @RequestParam(required = false) SexEnum sex,
             @RequestParam(required = false) String city,
             @RequestParam(required = false) String state,
             @RequestParam(required = false) Double maxPrice,
@@ -106,7 +108,7 @@ public class CattleAdController {
             Pageable pageable
     ) {
         return ResponseEntity.ok(
-                _cattleService.findByCriteria(city, state, maxPrice, breed, pageable)
+                _cattleService.findByCriteria(sex, city, state, maxPrice, breed, pageable)
                         .map(CattleAdMinDTO::new)
         );
     }

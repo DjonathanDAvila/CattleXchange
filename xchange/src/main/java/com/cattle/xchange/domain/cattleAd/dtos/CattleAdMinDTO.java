@@ -1,9 +1,10 @@
-package com.cattle.xchange.domain.cattle.dtos;
+package com.cattle.xchange.domain.cattleAd.dtos;
 
-import com.cattle.xchange.domain.cattle.CattleAd;
-import com.cattle.xchange.domain.cattle.enums.BreedEnum;
-import com.cattle.xchange.domain.cattle.enums.CattleStatusEnum;
-import com.cattle.xchange.domain.cattle.enums.SexEnum;
+import com.cattle.xchange.domain.cattleAd.CattleAd;
+import com.cattle.xchange.domain.cattleAd.enums.BreedEnum;
+import com.cattle.xchange.domain.cattleAd.enums.CattleStatusEnum;
+import com.cattle.xchange.domain.cattleAd.enums.SexEnum;
+import com.cattle.xchange.domain.cattleAdImage.dtos.CattleAdImageMinDTO;
 import jakarta.validation.constraints.NotBlank;
 
 import java.time.LocalDate;

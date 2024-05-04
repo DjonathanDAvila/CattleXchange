@@ -1,6 +1,5 @@
-package com.cattle.xchange.domain.cattle;
+package com.cattle.xchange.domain.cattleAdImage;
 
-import com.cattle.xchange.domain.cattle.CattleAdImage;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

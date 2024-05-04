@@ -1,6 +1,6 @@
 package com.cattle.xchange.domain.common;
 
-import com.cattle.xchange.domain.cattle.CattleAd;
+import com.cattle.xchange.domain.cattleAd.CattleAd;
 import com.querydsl.core.Tuple;
 import com.querydsl.core.types.Expression;
 import com.querydsl.jpa.impl.JPAQuery;
