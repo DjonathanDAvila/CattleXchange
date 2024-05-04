@@ -7,6 +7,7 @@ import com.cattle.xchange.domain.cattle.dtos.CattleAdMinDTO;
 import com.cattle.xchange.domain.cattle.enums.BreedEnum;
 import com.cattle.xchange.domain.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.data.domain.Pageable;
@@ -97,17 +98,16 @@ public class CattleAdController {
     }
 
     @GetMapping("/search")
-    public ResponseEntity<List<CattleAdMinDTO>> findByCriteria(
+    public ResponseEntity<Page<CattleAdMinDTO>> findByCriteria(
             @RequestParam(required = false) String city,
             @RequestParam(required = false) String state,
             @RequestParam(required = false) Double maxPrice,
-            @RequestParam(required = false) BreedEnum breed
+            @RequestParam(required = false) BreedEnum breed,
+            Pageable pageable
     ) {
         return ResponseEntity.ok(
-                _cattleService.findByCriteria(city, state, maxPrice, breed)
-                        .stream()
+                _cattleService.findByCriteria(city, state, maxPrice, breed, pageable)
                         .map(CattleAdMinDTO::new)
-                        .toList()
         );
     }
 }

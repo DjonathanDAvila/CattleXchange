@@ -4,20 +4,22 @@ import com.cattle.xchange.domain.cattle.enums.BreedEnum;
 import com.cattle.xchange.domain.cattle.enums.CattleStatusEnum;
 import com.cattle.xchange.domain.common.RepositoryBaseImpl;
 import com.querydsl.core.BooleanBuilder;
-
-import java.util.List;
+import com.querydsl.jpa.JPQLQuery;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.support.PageableExecutionUtils;
 
 class CattleAdRepositoryImpl extends RepositoryBaseImpl implements CattleAdCustomRepository {
 
     @Override
-    public List<CattleAd> findByCriteria(String city, String state, Double maxPrice, BreedEnum breed) {
+    public Page<CattleAd> findByCriteria(String city, String state, Double maxPrice, BreedEnum breed, Pageable pageable) {
         QCattleAd qCattleAd = QCattleAd.cattleAd;
         BooleanBuilder whereClause = new BooleanBuilder();
 
         // Always filter by active CattleAds
         whereClause.and(qCattleAd.status.eq(CattleStatusEnum.ACTIVE));
 
-        // Optional filters based on provided parameters
+        // Optional filters based on provided parameters+
         if (city != null) {
             whereClause.and(qCattleAd.city.eq(city));
         }
@@ -34,10 +36,13 @@ class CattleAdRepositoryImpl extends RepositoryBaseImpl implements CattleAdCusto
             whereClause.and(qCattleAd.breed.eq(breed));
         }
 
-        return select(qCattleAd)
+        JPQLQuery<CattleAd> query = select(qCattleAd)
                 .from(qCattleAd)
-                .where(whereClause)
-                .fetch();
+                .where(whereClause);
+
+        query = getQuerydsl().applyPagination(pageable, query);
+
+        return PageableExecutionUtils.getPage(query.fetch(), pageable, query::fetchCount);
     }
 
 }
