@@ -4,6 +4,7 @@ import com.cattle.xchange.domain.cattle.CattleAd;
 import com.cattle.xchange.domain.cattle.CattleAdService;
 import com.cattle.xchange.domain.cattle.dtos.CattleAdInsertDTO;
 import com.cattle.xchange.domain.cattle.dtos.CattleAdMinDTO;
+import com.cattle.xchange.domain.cattle.enums.BreedEnum;
 import com.cattle.xchange.domain.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -99,10 +100,11 @@ public class CattleAdController {
     public ResponseEntity<List<CattleAdMinDTO>> findByCriteria(
             @RequestParam(required = false) String city,
             @RequestParam(required = false) String state,
-            @RequestParam(required = false) Double maxPrice
+            @RequestParam(required = false) Double maxPrice,
+            @RequestParam(required = false) BreedEnum breed
     ) {
         return ResponseEntity.ok(
-                _cattleService.findByCriteria(city, state, maxPrice)
+                _cattleService.findByCriteria(city, state, maxPrice, breed)
                         .stream()
                         .map(CattleAdMinDTO::new)
                         .toList()
