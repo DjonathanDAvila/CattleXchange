@@ -3,6 +3,7 @@ package com.cattle.xchange.domain.cattle;
 import com.cattle.xchange.domain.cattle.dtos.CattleAdImageInsertDTO;
 import com.cattle.xchange.domain.cattle.enums.BreedEnum;
 import com.cattle.xchange.domain.cattle.enums.CattleStatusEnum;
+import com.cattle.xchange.domain.cattle.enums.SexEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
@@ -31,7 +32,7 @@ public class CattleAdService {
     }
 
     @Transactional
-    public CattleAd insert(String title, String desc, double unitValue, int quantity, BreedEnum breed, char sex, UUID userCod, String city, String state, CattleStatusEnum status, List<CattleAdImageInsertDTO> imagesDTO) {
+    public CattleAd insert(String title, String desc, double unitValue, int quantity, BreedEnum breed, SexEnum sex, UUID userCod, String city, String state, CattleStatusEnum status, List<CattleAdImageInsertDTO> imagesDTO) {
 
         var cattle = new CattleAd(
                 null, title, desc, unitValue, quantity, breed, sex, userCod, city, state, LocalDate.now(), status, new ArrayList<>()
