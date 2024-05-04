@@ -97,10 +97,11 @@ public class CattleAdController {
 
     @GetMapping("/search")
     public ResponseEntity<List<CattleAdMinDTO>> findByCriteria(
-            @RequestParam String city
+            @RequestParam(required = false) String city,
+            @RequestParam(required = false) String state
     ) {
         return ResponseEntity.ok(
-                _cattleService.findByCriteria(city)
+                _cattleService.findByCriteria(city, state)
                         .stream()
                         .map(CattleAdMinDTO::new)
                         .toList()

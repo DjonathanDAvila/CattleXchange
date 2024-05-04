@@ -9,15 +9,20 @@ import java.util.List;
 class CattleAdRepositoryImpl extends RepositoryBaseImpl implements CattleAdCustomRepository {
 
     @Override
-    public List<CattleAd> findByCriteria(String city) {
+    public List<CattleAd> findByCriteria(String city, String state) {
         QCattleAd qCattleAd = QCattleAd.cattleAd;
         BooleanBuilder whereClause = new BooleanBuilder();
 
         // Always filter by active CattleAds
         whereClause.and(qCattleAd.status.eq(CattleStatusEnum.ACTIVE));
 
+        // Optional params
         if (city != null) {
             whereClause.and(qCattleAd.city.eq(city));
+        }
+
+        if (state != null) {
+            whereClause.and(qCattleAd.state.eq(state));
         }
 
         return select(qCattleAd)
