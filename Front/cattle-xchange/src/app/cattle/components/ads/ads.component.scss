@@ -1,0 +1,45 @@
+.cattle-main-card {
+  width: 80%;
+  margin: auto;
+}
+
+.cards-container {
+  width: 100%;
+  margin-left: 2%;
+  margin-top: 2%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 3%;
+}
+
+.cards-container > .cattle-ad-card {
+  width: 30%;
+  margin-bottom: 2%;
+  cursor: pointer;
+  transition: box-shadow 0.3s ease;
+}
+
+.cards-container > .cattle-ad-card:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.cards-container > .cattle-ad-card > img {
+  height: 180px;
+}
+
+.cards-container > .cattle-ad-card > .ad-info {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 0;
+}
+
+.cards-container > .cattle-ad-card > .ad-price {
+  margin-top: -15px;
+  margin-left: 20px;
+  color: #1b5e20;
+  font-size: large;
+  font-weight: bold;
+}
