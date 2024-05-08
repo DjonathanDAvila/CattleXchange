@@ -1,98 +1,22 @@
 <mat-card class="cattle-main-card">
   <div class="cards-container">
-    <mat-card class="cattle-ad-card">
+    <mat-card class="cattle-ad-card" *ngFor="let ad of ads" (click)="findAdById(ad.id)">
       <mat-card-header>
-        <mat-card-title>Lote de Charoles</mat-card-title>
+        <mat-card-title>{{ ad.title }}</mat-card-title>
       </mat-card-header>
-      <img
-        mat-card-image
-        src="https://www.lancerural.com.br/wp-content/uploads/2021/06/ANGUS.jpg"
-        alt="Photo of a Shiba Inu"
-      />
+      <img mat-card-image [src]="ad.images[0]?.url" alt="Photo of cattle" />
       <mat-card-content class="ad-info">
         <div>
-          <p>Raça: Charoles</p>
-          <p>Região: Alagrete - SC</p>
+          <p>Raça: {{ ad.breed }}</p>
+          <p>Região: {{ ad.city }} - {{ ad.state }}</p>
         </div>
         <div>
-          <p>Quantidade: 10</p>
-          <p>Sexo: Masculino</p>
+          <p>Quantidade: {{ ad.quantity }}</p>
+          <p>Sexo: {{ ad.sex }}</p>
         </div>
       </mat-card-content>
       <div class="ad-price">
-        <p>R$: 00,00</p>
-      </div>
-    </mat-card>
-
-    <mat-card class="cattle-ad-card">
-      <mat-card-header>
-        <mat-card-title>Lote de Charoles</mat-card-title>
-      </mat-card-header>
-      <img
-        mat-card-image
-        src="https://www.lancerural.com.br/wp-content/uploads/2021/06/ANGUS.jpg"
-        alt="Photo of a Shiba Inu"
-      />
-      <mat-card-content class="ad-info">
-        <div>
-          <p>Raça: Charoles</p>
-          <p>Região: Alagrete - SC</p>
-        </div>
-        <div>
-          <p>Quantidade: 10</p>
-          <p>Sexo: Masculino</p>
-        </div>
-      </mat-card-content>
-      <div class="ad-price">
-        <p>R$: 00,00</p>
-      </div>
-    </mat-card>
-
-    <mat-card class="cattle-ad-card">
-      <mat-card-header>
-        <mat-card-title>Lote de Charoles</mat-card-title>
-      </mat-card-header>
-      <img
-        mat-card-image
-        src="https://www.lancerural.com.br/wp-content/uploads/2021/06/ANGUS.jpg"
-        alt="Photo of a Shiba Inu"
-      />
-      <mat-card-content class="ad-info">
-        <div>
-          <p>Raça: Charoles</p>
-          <p>Região: Alagrete - SC</p>
-        </div>
-        <div>
-          <p>Quantidade: 10</p>
-          <p>Sexo: Masculino</p>
-        </div>
-      </mat-card-content>
-      <div class="ad-price">
-        <p>R$: 00,00</p>
-      </div>
-    </mat-card>
-
-    <mat-card class="cattle-ad-card">
-      <mat-card-header>
-        <mat-card-title>Lote de Charoles</mat-card-title>
-      </mat-card-header>
-      <img
-        mat-card-image
-        src="https://www.lancerural.com.br/wp-content/uploads/2021/06/ANGUS.jpg"
-        alt="Photo of a Shiba Inu"
-      />
-      <mat-card-content class="ad-info">
-        <div>
-          <p>Raça: Charoles</p>
-          <p>Região: Alagrete - SC</p>
-        </div>
-        <div>
-          <p>Quantidade: 10</p>
-          <p>Sexo: Masculino</p>
-        </div>
-      </mat-card-content>
-      <div class="ad-price">
-        <p>R$: 00,00</p>
+        <p>R$: {{ ad.unitValue }}/unid</p>
       </div>
     </mat-card>
   </div>

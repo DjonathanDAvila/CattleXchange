@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Breed } from '../../../model/breed';
+import { Breed } from '../../../model/cattleAd/breed';
 
 @Component({
   selector: 'app-breeds',
@@ -7,9 +7,13 @@ import { Breed } from '../../../model/breed';
   styleUrl: './breeds.component.scss',
 })
 export class BreedsComponent {
-  breeds: Breed[];
+  breeds: Breed[] = [];
 
   constructor() {
+    this.getBreeds();
+  }
+
+  getBreeds() {
     this.breeds = [
       {
         breedName: 'Angus',
