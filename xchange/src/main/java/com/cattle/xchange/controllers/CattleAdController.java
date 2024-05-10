@@ -13,10 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.data.domain.Pageable;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 
 @RestController
 @RequestMapping("/cattle")
@@ -109,6 +106,17 @@ public class CattleAdController {
     ) {
         return ResponseEntity.ok(
                 _cattleService.findByCriteria(sex, city, state, maxPrice, breed, pageable)
+                        .map(CattleAdMinDTO::new)
+        );
+    }
+
+    @GetMapping("/user")
+    public ResponseEntity<Page<CattleAdMinDTO>> findByUser(
+            @RequestParam UUID userId,
+            Pageable pageable
+    ) {
+        return ResponseEntity.ok(
+                _cattleService.findByUser(userId, pageable)
                         .map(CattleAdMinDTO::new)
         );
     }
