@@ -3,6 +3,7 @@ package com.cattle.xchange.domain.cattleBuy;
 import com.cattle.xchange.domain.cattleAd.CattleAd;
 import com.cattle.xchange.domain.cattleAd.CattleAdService;
 import com.cattle.xchange.domain.cattleBuy.dtos.CattleBuyInsertDTO;
+import com.cattle.xchange.domain.itemBuy.CattleItemBuy;
 import com.cattle.xchange.domain.itemBuy.CattleItemBuyService;
 import com.cattle.xchange.domain.itemBuy.dtos.ItemBuyInsertDTO;
 import com.cattle.xchange.domain.user.User;
@@ -62,6 +63,9 @@ public class CattleBuyService {
         List<UUID> listCodAds = cattleBuyInsertDTO.listCodAds();
         List<ItemBuyInsertDTO> itemBuyInsertDTOList = new ArrayList<>();
 
+
+        List<CattleItemBuy> cattleItemBuys = new ArrayList<>();
+
         for (UUID codAd : listCodAds) {
             Optional<CattleAd> optionalCattleAd = cattleAdService.findCattleAdById(codAd);
 
@@ -72,11 +76,20 @@ public class CattleBuyService {
                         cattleAd.getUnitValue()
                 );
 
+                CattleItemBuy newItemBuy = new CattleItemBuy(
+                        newCattleBuy,
+                        cattleAd,
+                        cattleAd.getUnitValue()
+                );
+
                 itemBuyInsertDTOList.add(newItemInsertDTO);
+                cattleItemBuys.add(newItemBuy);
             });
         }
 
+
         savedCattleBuy.setTotalValue(cattleItemBuyService.createCattleItemBuy(itemBuyInsertDTOList));
+        savedCattleBuy.setCattleItemBuyList(cattleItemBuys);
         cattleBuyRepository.save(savedCattleBuy);
         return savedCattleBuy;
     }
