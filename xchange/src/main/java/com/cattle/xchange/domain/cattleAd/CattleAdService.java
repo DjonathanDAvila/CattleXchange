@@ -68,4 +68,9 @@ public class CattleAdService {
     public Page<CattleAd> findByCriteria(SexEnum sex, String city, String state, Double maxPrice, BreedEnum breed, Pageable pageable) {
         return _cattleRepository.findByCriteria(sex, city, state, maxPrice, breed, pageable);
     }
+
+    @Transactional(readOnly = true)
+    public Page<CattleAd> findByUser(UUID userId, Pageable pageable) {
+        return _cattleRepository.findByUser(userId, pageable);
+    }
 }
