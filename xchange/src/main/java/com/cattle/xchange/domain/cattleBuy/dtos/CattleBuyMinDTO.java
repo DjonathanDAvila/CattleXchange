@@ -4,6 +4,7 @@ import com.cattle.xchange.domain.cattleAd.dtos.CattleAdForBuyMinDTO;
 import com.cattle.xchange.domain.cattleBuy.CattleBuy;
 import com.cattle.xchange.domain.itemBuy.dtos.ItemBuyItemDTO;
 import com.cattle.xchange.domain.user.dtos.UserMinDTO;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.validation.constraints.NotBlank;
 
 import java.util.Date;
@@ -16,6 +17,7 @@ public record CattleBuyMinDTO(
         @NotBlank
         UUID codBuy,
         @NotBlank
+        @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
         Date dateBuy,
         @NotBlank
         double totalValue,

@@ -1,6 +1,7 @@
 package com.cattle.xchange.domain.user.dtos;
 
 import com.cattle.xchange.domain.user.User;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.time.LocalDate;
 import java.util.UUID;
@@ -11,6 +12,7 @@ public record UserMinDTO(
         String name,
         String lastName,
         String email,
+        @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
         LocalDate creationDate
 ) {
 
