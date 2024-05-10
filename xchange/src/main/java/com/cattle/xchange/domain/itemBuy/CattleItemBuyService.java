@@ -1,7 +1,7 @@
 package com.cattle.xchange.domain.itemBuy;
 
-import com.cattle.xchange.domain.cattle.cattleAd.CattleAdService;
-import com.cattle.xchange.domain.cattle.cattleAd.enums.CattleStatusEnum;
+import com.cattle.xchange.domain.cattleAd.CattleAdService;
+import com.cattle.xchange.domain.cattleAd.enums.CattleStatusEnum;
 import com.cattle.xchange.domain.itemBuy.dtos.ItemBuyInsertDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

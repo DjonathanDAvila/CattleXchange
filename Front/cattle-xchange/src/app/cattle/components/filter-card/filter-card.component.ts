@@ -8,6 +8,7 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 })
 export class FilterCardComponent {
   cities: string[] = ['São Paulo', 'Rio de Janeiro', 'Blumenau'];
+  states: string[] = ['São Paulo', 'Rio de Janeiro', 'Santa Catarina'];
 
   form: FormGroup;
 
@@ -15,7 +16,7 @@ export class FilterCardComponent {
     this.form = this.formBuilder.group({
       sex: [],
       city: [],
-      initialPrice: null,
+      state: [],
       finalPrice: null,
     });
   }

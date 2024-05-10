@@ -2,6 +2,7 @@ package com.cattle.xchange.domain.cattleBuy.dtos;
 
 import com.cattle.xchange.domain.cattle.cattleAd.dtos.CattleAdForBuyMinDTO;
 import com.cattle.xchange.domain.cattleBuy.CattleBuy;
+import com.cattle.xchange.domain.cattleAd.dtos.CattleAdMinDTO;
 import com.cattle.xchange.domain.user.dtos.UserMinDTO;
 import jakarta.validation.constraints.NotBlank;
 

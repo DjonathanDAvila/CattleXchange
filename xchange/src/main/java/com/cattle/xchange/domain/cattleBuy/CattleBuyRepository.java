@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import java.util.UUID;
 
 @Repository
-interface CattleBuyRepository extends JpaRepository<CattleBuy, UUID> {
+interface CattleBuyRepository extends JpaRepository<CattleBuy, UUID>, CattleBuyCustomRepository {
 
 }

@@ -1,0 +1,23 @@
+<mat-card class="cattle-main-card">
+  <div class="cards-container">
+    <mat-card class="cattle-ad-card" *ngFor="let ad of ads" (click)="findAdById(ad.id)">
+      <mat-card-header>
+        <mat-card-title>{{ ad.title }}</mat-card-title>
+      </mat-card-header>
+      <img mat-card-image [src]="ad.images[0]?.url" alt="Photo of cattle" />
+      <mat-card-content class="ad-info">
+        <div>
+          <p>Raça: {{ ad.breed }}</p>
+          <p>Região: {{ ad.city }} - {{ ad.state }}</p>
+        </div>
+        <div>
+          <p>Quantidade: {{ ad.quantity }}</p>
+          <p>Sexo: {{ ad.sex }}</p>
+        </div>
+      </mat-card-content>
+      <div class="ad-price">
+        <p>R$: {{ ad.unitValue }}/unid</p>
+      </div>
+    </mat-card>
+  </div>
+</mat-card>

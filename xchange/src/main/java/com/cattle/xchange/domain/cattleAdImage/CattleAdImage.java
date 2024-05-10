@@ -1,11 +1,9 @@
-package com.cattle.xchange.domain.cattle;
+package com.cattle.xchange.domain.cattleAdImage;
 
-import com.cattle.xchange.domain.cattle.cattleAd.CattleAd;
-import com.cattle.xchange.domain.cattle.cattleAd.dtos.CattleAdImageInsertDTO;
-import com.cattle.xchange.domain.cattle.cattleAd.dtos.CattleAdImageMinDTO;
+import com.cattle.xchange.domain.cattleAd.CattleAd;
+import com.cattle.xchange.domain.cattleAdImage.dtos.CattleAdImageInsertDTO;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import jdk.jfr.TransitionFrom;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

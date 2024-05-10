@@ -1,4 +1,4 @@
-package com.cattle.xchange.domain.cattle.cattleAd.enums;
+package com.cattle.xchange.domain.cattleAd.enums;
 
 public enum BreedEnum {
     ANGUS,
@@ -10,5 +10,6 @@ public enum BreedEnum {
     SIMMENTAL,
     ANGUS_ABERDEEN_POLLED,
     BRANGUS,
-    GUZERA
+    GUZERA,
+    WAGYU
 }

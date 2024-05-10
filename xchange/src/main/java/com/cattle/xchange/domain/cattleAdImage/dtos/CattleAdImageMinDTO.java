@@ -1,7 +1,6 @@
-package com.cattle.xchange.domain.cattle.cattleAd.dtos;
+package com.cattle.xchange.domain.cattleAdImage.dtos;
 
-import com.cattle.xchange.domain.cattle.CattleAdImage;
-import com.cattle.xchange.domain.cattle.cattleAd.CattleAd;
+import com.cattle.xchange.domain.cattleAdImage.CattleAdImage;
 import jakarta.validation.constraints.NotBlank;
 
 import java.util.UUID;

@@ -1,11 +1,14 @@
 package com.cattle.xchange.controllers;
 
-import com.cattle.xchange.domain.cattle.cattleAd.CattleAd;
-import com.cattle.xchange.domain.cattle.cattleAd.CattleAdService;
-import com.cattle.xchange.domain.cattle.cattleAd.dtos.CattleAdInsertDTO;
-import com.cattle.xchange.domain.cattle.cattleAd.dtos.CattleAdMinDTO;
+import com.cattle.xchange.domain.cattleAd.CattleAd;
+import com.cattle.xchange.domain.cattleAd.CattleAdService;
+import com.cattle.xchange.domain.cattleAd.dtos.CattleAdInsertDTO;
+import com.cattle.xchange.domain.cattleAd.dtos.CattleAdMinDTO;
+import com.cattle.xchange.domain.cattleAd.enums.BreedEnum;
+import com.cattle.xchange.domain.cattleAd.enums.SexEnum;
 import com.cattle.xchange.domain.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.data.domain.Pageable;
@@ -27,8 +30,7 @@ public class CattleAdController {
 
 
     @PostMapping("/")
-    public ResponseEntity<CattleAdMinDTO> insert(@RequestBody CattleAdInsertDTO dto)
-    {
+    public ResponseEntity<CattleAdMinDTO> insert(@RequestBody CattleAdInsertDTO dto) {
         if (_userService.findUserById(dto.userCod()) == null)
             return ResponseEntity.notFound().build();
 
@@ -42,6 +44,8 @@ public class CattleAdController {
                         dto.breed(),
                         dto.sex(),
                         dto.userCod(),
+                        dto.city(),
+                        dto.state(),
                         dto.status(),
                         dto.cattleAdImages()
                 ))
@@ -49,10 +53,8 @@ public class CattleAdController {
     }
 
 
-    // TODO: Get all
     @GetMapping
-    public ResponseEntity<List<CattleAdMinDTO>> findAllCattleAds(Pageable pageable)
-    {
+    public ResponseEntity<List<CattleAdMinDTO>> findAllCattleAds(Pageable pageable) {
         List<CattleAd> cattleList = _cattleService.findCattleAds(pageable);
 
         if (cattleList == null || cattleList.isEmpty())
@@ -61,12 +63,10 @@ public class CattleAdController {
 
         List<CattleAdMinDTO> cattleListDTO = new ArrayList<>();
 
-        for (CattleAd cattle : cattleList)
-        {
+        for (CattleAd cattle : cattleList) {
             CattleAdMinDTO cattleDTO = new CattleAdMinDTO(cattle);
             cattleListDTO.add(cattleDTO);
         }
-
 
 
         return ResponseEntity.ok(cattleListDTO);
@@ -87,7 +87,7 @@ public class CattleAdController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity deleteById(@PathVariable UUID id){
+    public ResponseEntity deleteById(@PathVariable UUID id) {
 
         if (!_cattleService.findCattleAdById(id).isPresent())
             return ResponseEntity.notFound().build();
@@ -96,5 +96,20 @@ public class CattleAdController {
         _cattleService.delete(id);
 
         return ResponseEntity.ok().body("Anúncio removido");
+    }
+
+    @GetMapping("/search")
+    public ResponseEntity<Page<CattleAdMinDTO>> findByCriteria(
+            @RequestParam(required = false) SexEnum sex,
+            @RequestParam(required = false) String city,
+            @RequestParam(required = false) String state,
+            @RequestParam(required = false) Double maxPrice,
+            @RequestParam(required = false) BreedEnum breed,
+            Pageable pageable
+    ) {
+        return ResponseEntity.ok(
+                _cattleService.findByCriteria(sex, city, state, maxPrice, breed, pageable)
+                        .map(CattleAdMinDTO::new)
+        );
     }
 }

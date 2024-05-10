@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Breed } from '../../model/breed';
+import { Breed } from '../../../model/cattleAd/breed';
 
 @Component({
   selector: 'app-breeds',
@@ -7,9 +7,13 @@ import { Breed } from '../../model/breed';
   styleUrl: './breeds.component.scss',
 })
 export class BreedsComponent {
-  breeds: Breed[];
+  breeds: Breed[] = [];
 
   constructor() {
+    this.getBreeds();
+  }
+
+  getBreeds() {
     this.breeds = [
       {
         breedName: 'Angus',
@@ -19,7 +23,7 @@ export class BreedsComponent {
       {
         breedName: 'Nelore',
         imageUrl:
-          'https://upload.wikimedia.org/wikipedia/commons/3/39/RIMA_FIV_NERU.jpg',
+          'https://semex.com.br/sites/default/files/styles/foto_touro_principal/public/corte/Gladiador-SITE0921.jpg?itok=Uo19uot9',
       },
       {
         breedName: 'Hereford',
