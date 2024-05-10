@@ -1,4 +1,4 @@
-package com.cattle.xchange.exception;
+package com.cattle.xchange.infra.exception;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

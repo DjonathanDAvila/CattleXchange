@@ -20,7 +20,12 @@
         </mat-select>
       </mat-form-field>
       <mat-form-field class="form-field">
-        <input matInput type="number" placeholder="de $" formControlName="initialPrice"/>
+        <mat-label>Estado</mat-label>
+        <mat-select multiple formControlName="state">
+          @for (state of states; track state) {
+          <mat-option [value]="state">{{ state }}</mat-option>
+          }
+        </mat-select>
       </mat-form-field>
       <mat-form-field class="form-field">
         <input matInput type="number" placeholder="até $" formControlName="finalPrice"/>
