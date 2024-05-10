@@ -2,11 +2,9 @@ package com.cattle.xchange.domain.user;
 
 import com.cattle.xchange.domain.user.dtos.UserLoginDTO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import com.cattle.xchange.exception.ResourceNotFoundException;
-import com.cattle.xchange.exception.handler.GlobalExceptionHandler;
+import com.cattle.xchange.infra.exception.ResourceNotFoundException;
 
 import java.time.LocalDate;
 import java.util.List;

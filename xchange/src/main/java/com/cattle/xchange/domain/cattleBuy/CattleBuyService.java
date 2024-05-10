@@ -7,7 +7,7 @@ import com.cattle.xchange.domain.itemBuy.CattleItemBuyService;
 import com.cattle.xchange.domain.itemBuy.dtos.ItemBuyInsertDTO;
 import com.cattle.xchange.domain.user.User;
 import com.cattle.xchange.domain.user.UserService;
-import com.cattle.xchange.exception.BadRequestException;
+import com.cattle.xchange.infra.exception.BadRequestException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

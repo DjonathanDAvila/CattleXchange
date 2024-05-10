@@ -1,14 +1,14 @@
-package com.cattle.xchange.exception.handler;
+package com.cattle.xchange.infra.exception.handler;
 
-import com.cattle.xchange.exception.ExceptionResponse;
-import com.cattle.xchange.exception.ResourceNotFoundException;
+import com.cattle.xchange.infra.exception.ExceptionResponse;
+import com.cattle.xchange.infra.exception.ResourceNotFoundException;
+import com.cattle.xchange.infra.exception.BadRequestException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
-import com.cattle.xchange.exception.BadRequestException;
 
 import java.util.Date;
 
