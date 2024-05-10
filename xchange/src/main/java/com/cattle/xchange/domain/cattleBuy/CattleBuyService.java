@@ -9,6 +9,8 @@ import com.cattle.xchange.domain.user.User;
 import com.cattle.xchange.domain.user.UserService;
 import com.cattle.xchange.infra.exception.BadRequestException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -77,5 +79,9 @@ public class CattleBuyService {
         savedCattleBuy.setTotalValue(cattleItemBuyService.createCattleItemBuy(itemBuyInsertDTOList));
         cattleBuyRepository.save(savedCattleBuy);
         return savedCattleBuy;
+    }
+
+    public Page<CattleBuy> findByUserId(UUID userId, Pageable pageable){
+        return cattleBuyRepository.findByUserId(userId, pageable);
     }
 }
