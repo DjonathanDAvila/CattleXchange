@@ -13,7 +13,7 @@ public record CattleAdForBuyMinDTO
          @NotBlank
          int quantity,
          @NotBlank
-         UUID userCod
+         UUID ownerCod
         ) {
     public CattleAdForBuyMinDTO(CattleAd user) {
         this(
