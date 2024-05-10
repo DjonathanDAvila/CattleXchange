@@ -7,6 +7,7 @@ import com.cattle.xchange.domain.itemBuy.CattleItemBuyService;
 import com.cattle.xchange.domain.itemBuy.dtos.ItemBuyInsertDTO;
 import com.cattle.xchange.domain.user.User;
 import com.cattle.xchange.domain.user.UserService;
+import com.cattle.xchange.exception.BadRequestException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -36,6 +37,15 @@ public class CattleBuyService {
     }
 
     public CattleBuy create(CattleBuyInsertDTO cattleBuyInsertDTO) {
+        // Verifica se o código do usuário é fornecido
+        if (cattleBuyInsertDTO.codUser() == null) {
+            throw new BadRequestException("O código do usuário é obrigatório.");
+        }
+
+        // Verifica se a data de compra é fornecida
+        if (cattleBuyInsertDTO.dataBuy() == null) {
+            throw new BadRequestException("A data de compra é obrigatória.");
+        }
         User user = userService.findUserById(cattleBuyInsertDTO.codUser());
 
         double totalValue = 0;

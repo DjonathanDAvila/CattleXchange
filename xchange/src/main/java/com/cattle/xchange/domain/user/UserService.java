@@ -1,10 +1,12 @@
 package com.cattle.xchange.domain.user;
 
 import com.cattle.xchange.domain.user.dtos.UserLoginDTO;
-import com.cattle.xchange.domain.user.dtos.UserMinDTO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import com.cattle.xchange.exception.ResourceNotFoundException;
+import com.cattle.xchange.exception.handler.GlobalExceptionHandler;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -19,7 +21,7 @@ public class UserService {
 
     @Transactional(readOnly = true)
     public User findUserById(UUID id) {
-        return repository.findById(id).orElseThrow();
+        return repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Usuário não encontrado."));
     }
 
     @Transactional
@@ -46,16 +48,14 @@ public class UserService {
 
     @Transactional
     public User login(UserLoginDTO usuario){
-        User user = repository.findByEmail(usuario.email());
-
-        if(!Objects.equals(user.getEmail(), usuario.email())){
-            throw new IllegalArgumentException("Email não corresponde com as credências");
-        }
+        User user = repository.findByEmail(usuario.email()).orElseThrow(() -> new ResourceNotFoundException("Email não cadastrado."));
 
         if(!Objects.equals(user.getPassword(), usuario.password())){
-            throw new IllegalArgumentException("Senha não corresponde com as credências");
+            throw  new ResourceNotFoundException("Senha incorreta!");
+        } else {
+            return user;
         }
-        return user;
+
     }
 
 
