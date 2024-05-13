@@ -5,6 +5,7 @@ import com.cattle.xchange.domain.cattleAd.enums.BreedEnum;
 import com.cattle.xchange.domain.cattleAd.enums.CattleStatusEnum;
 import com.cattle.xchange.domain.cattleAd.enums.SexEnum;
 import com.cattle.xchange.domain.cattleAdImage.dtos.CattleAdImageMinDTO;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.validation.constraints.NotBlank;
 
 import java.time.LocalDate;
@@ -35,6 +36,7 @@ public record CattleAdMinDTO(
         @NotBlank
         String state,
         @NotBlank
+        @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
         LocalDate adDate,
         @NotBlank
         CattleStatusEnum status,
