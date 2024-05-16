@@ -76,6 +76,12 @@
 			<version>${querydsl.version}</version>
 			<classifier>jakarta</classifier>
 		</dependency>
+    
+		<!-- Security-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+      
 		<!-- Hateoas -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

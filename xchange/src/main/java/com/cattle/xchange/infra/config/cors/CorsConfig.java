@@ -1,4 +1,4 @@
-package com.cattle.xchange.infra.cors;
+package com.cattle.xchange.infra.config.cors;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
