@@ -1,14 +1,36 @@
 .mat-toolbar {
-  height: 200px;
-  justify-content: space-between;
+  // min-width: auto;
+  max-width: none;
+  height: auto;
+  // justify-content: space-between;
 }
 
 .container {
-  width: 100%;
   display: flex;
-  flex-direction: row;
-  justify-content: center;
-  padding-left: 5%;
-  gap: 20rem;
+  justify-content: space-between;
+  gap: 10rem;
   align-items: center;
+}
+
+ul {
+  list-style: none;
+}
+
+.contact-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.info-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.custom-opacity{
+  color: white;
+  opacity: 50%;
+}
+
+img{
+  height: 5rem;
 }
