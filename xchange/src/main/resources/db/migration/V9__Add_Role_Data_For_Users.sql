@@ -1,0 +1,1 @@
+UPDATE TUSER SET bd_role = 'ROLE_USER';

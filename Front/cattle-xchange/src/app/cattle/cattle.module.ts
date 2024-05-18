@@ -10,6 +10,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { HomeComponent } from './components/home/home.component';
 import { BreedsComponent } from './components/breeds/breeds.component';
 import { AdsComponent } from './components/ads/ads.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { AdsComponent } from './components/ads/ads.component';
     HeaderComponent,
     FilterCardComponent,
     BreedsComponent,
-    AdsComponent
+    AdsComponent,
+    FooterComponent
   ],
   imports: [
     CommonModule,
