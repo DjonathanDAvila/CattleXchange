@@ -65,17 +65,31 @@
 
         <!-- QueryDSL -->
         <dependency>
-            <groupId>com.querydsl</groupId>
-            <artifactId>querydsl-jpa</artifactId>
-            <version>${querydsl.version}</version>
-            <classifier>jakarta</classifier>
+          <groupId>com.querydsl</groupId>
+          <artifactId>querydsl-jpa</artifactId>
+          <version>${querydsl.version}</version>
+          <classifier>jakarta</classifier>
         </dependency>
         <dependency>
-            <groupId>com.querydsl</groupId>
-            <artifactId>querydsl-apt</artifactId>
-            <version>${querydsl.version}</version>
-            <classifier>jakarta</classifier>
+          <groupId>com.querydsl</groupId>
+          <artifactId>querydsl-apt</artifactId>
+          <version>${querydsl.version}</version>
+          <classifier>jakarta</classifier>
         </dependency>
+        <!-- Hateoas -->
+        <dependency>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-starter-hateoas</artifactId>
+          <version>3.2.4</version>
+        </dependency>
+        <!-- Swagger -->
+        <dependency>
+          <groupId>org.springdoc</groupId>
+          <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+          <version>2.5.0</version>
+        </dependency>
+
+
 
         <!-- Security-->
         <dependency>
