@@ -1,7 +1,10 @@
 package com.cattle.xchange.domain.cattleAd.dtos;
 
+import com.cattle.xchange.controllers.CattleAdController;
 import com.cattle.xchange.domain.cattleAd.CattleAd;
 import jakarta.validation.constraints.NotBlank;
+import org.springframework.hateoas.Link;
+import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 
 import java.util.UUID;
 
@@ -13,14 +16,20 @@ public record CattleAdForBuyMinDTO
          @NotBlank
          int quantity,
          @NotBlank
-         UUID ownerCod
+         UUID ownerCod,
+
+         @NotBlank
+         Link cattleAdLink
         ) {
-    public CattleAdForBuyMinDTO(CattleAd user) {
+    public CattleAdForBuyMinDTO(CattleAd cattleAd) {
         this(
-                user.getTitle(),
-                user.getUnitValue(),
-                user.getQuantity(),
-                user.getUserCod()
+                cattleAd.getTitle(),
+                cattleAd.getUnitValue(),
+                cattleAd.getQuantity(),
+                cattleAd.getUserCod(),
+                WebMvcLinkBuilder.linkTo(
+                                WebMvcLinkBuilder.methodOn(CattleAdController.class).findCattleAdById(cattleAd.getId()))
+                        .withSelfRel()
         );
     }
 }
