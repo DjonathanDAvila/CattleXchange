@@ -21,7 +21,7 @@ public class OpenAPIConfiguration {
         Info information = new Info()
                 .title("CattleXChange")
                 .version("1.0")
-                .description("This API exposes endpoints to manage a ecommerce for cattle.");
+                .description("This API exposes endpoints to manage an ecommerce for cattle.");
 
         return new OpenAPI().info(information).servers(List.of(server));
     }
