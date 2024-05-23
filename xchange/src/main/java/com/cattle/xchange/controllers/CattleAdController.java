@@ -8,8 +8,7 @@ import com.cattle.xchange.domain.cattleAd.enums.BreedEnum;
 import com.cattle.xchange.domain.cattleAd.enums.SexEnum;
 import com.cattle.xchange.domain.user.UserService;
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +19,7 @@ import java.util.*;
 
 @RestController
 @RequestMapping("/cattle")
+@Tag(name = "CATTLE", description = "Methods of Cattle API")
 public class CattleAdController {
 
     @Autowired
@@ -29,9 +29,9 @@ public class CattleAdController {
     private UserService _userService;
 
 
-    @Operation(summary = "Insert Cattle Ads",
-            description = "Insert Cattle Ads")
-    @PostMapping("/")
+    @Operation(summary = "Insert a Cattle Ads",
+            description = "Insert a Cattle Ads. The response is a Cattle Ad object.")
+    @PostMapping
     public ResponseEntity<CattleAdMinDTO> insert(@RequestBody CattleAdInsertDTO dto) {
         if (_userService.findUserById(dto.userCod()) == null)
             return ResponseEntity.notFound().build();
@@ -56,8 +56,8 @@ public class CattleAdController {
 
 
     @Operation(summary = "Find all Cattle Ads",
-            description = "Returns all Cattle Ads data with pagination")
-    @GetMapping
+            description = "Response is a list of Cattle Ad Objects.")
+    @GetMapping("/")
     public ResponseEntity<List<CattleAdMinDTO>> findAllCattleAds(Pageable pageable) {
         List<CattleAd> cattleList = _cattleService.findCattleAds(pageable);
 
@@ -78,7 +78,7 @@ public class CattleAdController {
 
 
     @Operation(summary = "Find Cattle Ads by Id",
-            description = "Returns Cattle Ads data by Id")
+            description = "Response is a Cattle Ad Object by Id")
     @GetMapping("/{id}")
     public ResponseEntity<CattleAdMinDTO> findCattleAdById(@PathVariable UUID id) {
         Optional<CattleAd> optionalCattle = _cattleService.findCattleAdById(id);
@@ -93,7 +93,7 @@ public class CattleAdController {
     }
 
     @Operation(summary = "Remove Cattle Ads by Id",
-            description = "Remove Cattle Ads data by Id")
+            description = "Response is a message of success or not found")
     @DeleteMapping("/{id}")
     public ResponseEntity deleteById(@PathVariable UUID id) {
 
@@ -107,7 +107,7 @@ public class CattleAdController {
     }
 
     @Operation(summary = "Find Cattle Ads by attributes",
-            description = "Find Cattle Ads by sex, city, state, maxPrice and breed with pagination")
+            description = "Response is Cattle Ads Object by sex, city, state, maxPrice and breed with pagination")
     @GetMapping("/search")
     public ResponseEntity<Page<CattleAdMinDTO>> findByCriteria(
             @RequestParam(required = false) SexEnum sex,
@@ -124,7 +124,7 @@ public class CattleAdController {
     }
 
     @Operation(summary = "Find All Cattle Ads by user",
-            description = "Find All Cattle Ads by user with pagination")
+            description = "Response is a list of Cattle Ads by user with pagination")
     @GetMapping("/user")
     public ResponseEntity<Page<CattleAdMinDTO>> findByUser(
             @RequestParam UUID userId,

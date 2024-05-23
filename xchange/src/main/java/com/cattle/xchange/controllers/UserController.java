@@ -5,6 +5,7 @@ import com.cattle.xchange.domain.user.dtos.UserInsertDTO;
 import com.cattle.xchange.domain.user.dtos.UserLoginDTO;
 import com.cattle.xchange.domain.user.dtos.UserMinDTO;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,13 +15,14 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/users")
+@Tag(name = "USER", description = "Methods of User API")
 public class UserController {
 
     @Autowired
     private UserService service;
 
-    @Operation(summary = "Insert User",
-            description = "Insert User")
+    @Operation(summary = "Insert an User",
+            description = "Response is an User object.")
     @PostMapping
     public ResponseEntity<UserMinDTO> insert(@RequestBody UserInsertDTO dto) {
         return ResponseEntity.ok(
@@ -35,7 +37,7 @@ public class UserController {
     }
 
     @Operation(summary = "Find All Users",
-            description = "Find All Users")
+            description = "Response is a list of User Objects.")
     @GetMapping("/")
     public ResponseEntity<List<UserMinDTO>> findAll() {
         return ResponseEntity.ok(
@@ -44,7 +46,7 @@ public class UserController {
     }
 
     @Operation(summary = "Find User by Id",
-            description = "Find User by Id")
+            description = "Response an User Object by Id.")
     @GetMapping("/{id}")
     public ResponseEntity<UserMinDTO> findUserById(@PathVariable UUID id) {
         return ResponseEntity.ok(
@@ -53,7 +55,7 @@ public class UserController {
     }
 
     @Operation(summary = "Find User by document",
-            description = "Find User by cpf field")
+            description = "Response is an User Object by document.")
     @GetMapping("/cpf/{cpf}")
     public ResponseEntity<UserMinDTO> findByCpf(@PathVariable String cpf) {
         return ResponseEntity.ok(
@@ -62,7 +64,7 @@ public class UserController {
     }
 
     @Operation(summary = "Login User",
-            description = "Login User with email and password")
+            description = "Response is an User Object by login.")
     @PostMapping("/login")
     public ResponseEntity<UserMinDTO> login(@RequestBody UserLoginDTO dto) {
         return ResponseEntity.ok(
