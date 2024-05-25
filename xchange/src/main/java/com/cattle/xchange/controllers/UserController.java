@@ -21,21 +21,6 @@ public class UserController {
     @Autowired
     private UserService service;
 
-    @Operation(summary = "Insert an User",
-            description = "Response is an User object.")
-    @PostMapping
-    public ResponseEntity<UserMinDTO> insert(@RequestBody UserInsertDTO dto) {
-        return ResponseEntity.ok(
-                new UserMinDTO(service.insert(
-                        dto.document(),
-                        dto.name(),
-                        dto.lastName(),
-                        dto.email(),
-                        dto.password()
-                ))
-        );
-    }
-
     @Operation(summary = "Find All Users",
             description = "Response is a list of User Objects.")
     @GetMapping("/")
@@ -60,15 +45,6 @@ public class UserController {
     public ResponseEntity<UserMinDTO> findByCpf(@PathVariable String cpf) {
         return ResponseEntity.ok(
                 new UserMinDTO(service.findByCpf(cpf))
-        );
-    }
-
-    @Operation(summary = "Login User",
-            description = "Response is an User Object by login.")
-    @PostMapping("/login")
-    public ResponseEntity<UserMinDTO> login(@RequestBody UserLoginDTO dto) {
-        return ResponseEntity.ok(
-                new UserMinDTO(service.login(dto))
         );
     }
 }

@@ -28,12 +28,6 @@ public class UserService {
     };
 
     @Transactional
-    public User insert(String document, String name, String lastName, String email, String password) {
-        return repository.save(new User(
-                document, name, lastName, email, password, LocalDate.now()
-        ));
-    }
-    @Transactional
     public User findByCpf(String document) {
         User user = repository.findByDocument(document);
 
@@ -43,19 +37,4 @@ public class UserService {
 
         return user;
     }
-
-    @Transactional
-    public User login(UserLoginDTO usuario){
-        User user = repository.findByEmail(usuario.email()).orElseThrow(() -> new ResourceNotFoundException("Email não cadastrado."));
-
-        if(!Objects.equals(user.getPassword(), usuario.password())){
-            throw  new ResourceNotFoundException("Senha incorreta!");
-        } else {
-            return user;
-        }
-
-    }
-
-
-
 }

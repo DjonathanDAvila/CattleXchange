@@ -12,6 +12,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.data.domain.Pageable;
 
@@ -27,33 +28,6 @@ public class CattleAdController {
 
     @Autowired
     private UserService _userService;
-
-
-    @Operation(summary = "Insert a Cattle Ads",
-            description = "Insert a Cattle Ads. The response is a Cattle Ad object.")
-    @PostMapping
-    public ResponseEntity<CattleAdMinDTO> insert(@RequestBody CattleAdInsertDTO dto) {
-        if (_userService.findUserById(dto.userCod()) == null)
-            return ResponseEntity.notFound().build();
-
-
-        return ResponseEntity.ok(
-                new CattleAdMinDTO(_cattleService.insert(
-                        dto.title(),
-                        dto.desc(),
-                        dto.unitValue(),
-                        dto.quantity(),
-                        dto.breed(),
-                        dto.sex(),
-                        dto.userCod(),
-                        dto.city(),
-                        dto.state(),
-                        dto.status(),
-                        dto.cattleAdImages()
-                ))
-        );
-    }
-
 
     @Operation(summary = "Find all Cattle Ads",
             description = "Response is a list of Cattle Ad Objects.")
@@ -92,6 +66,8 @@ public class CattleAdController {
         }
     }
 
+
+    @PreAuthorize("hasRole('ROLE_USER')")
     @Operation(summary = "Remove Cattle Ads by Id",
             description = "Response is a message of success or not found")
     @DeleteMapping("/{id}")
@@ -123,6 +99,7 @@ public class CattleAdController {
         );
     }
 
+    @PreAuthorize("hasRole('ROLE_USER')")
     @Operation(summary = "Find All Cattle Ads by user",
             description = "Response is a list of Cattle Ads by user with pagination")
     @GetMapping("/user")
