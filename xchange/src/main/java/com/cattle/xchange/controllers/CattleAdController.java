@@ -10,6 +10,7 @@ import com.cattle.xchange.domain.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.data.domain.Pageable;
 
@@ -25,8 +26,8 @@ public class CattleAdController {
     @Autowired
     private UserService _userService;
 
-
-    @PostMapping("/")
+    @PreAuthorize("hasRole('ROLE_USER')")
+    @PostMapping
     public ResponseEntity<CattleAdMinDTO> insert(@RequestBody CattleAdInsertDTO dto) {
         if (_userService.findUserById(dto.userCod()) == null)
             return ResponseEntity.notFound().build();
@@ -83,6 +84,7 @@ public class CattleAdController {
         }
     }
 
+    @PreAuthorize("hasRole('ROLE_USER')")
     @DeleteMapping("/{id}")
     public ResponseEntity deleteById(@PathVariable UUID id) {
 
@@ -110,6 +112,7 @@ public class CattleAdController {
         );
     }
 
+    @PreAuthorize("hasRole('ROLE_USER')")
     @GetMapping("/user")
     public ResponseEntity<Page<CattleAdMinDTO>> findByUser(
             @RequestParam UUID userId,

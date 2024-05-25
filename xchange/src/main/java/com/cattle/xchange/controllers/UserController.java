@@ -18,20 +18,7 @@ public class UserController {
     @Autowired
     private UserService service;
 
-    @PostMapping
-    public ResponseEntity<UserMinDTO> insert(@RequestBody UserInsertDTO dto) {
-        return ResponseEntity.ok(
-                new UserMinDTO(service.insert(
-                        dto.document(),
-                        dto.name(),
-                        dto.lastName(),
-                        dto.email(),
-                        dto.password()
-                ))
-        );
-    }
-
-    @GetMapping("/")
+    @GetMapping
     public ResponseEntity<List<UserMinDTO>> findAll() {
         return ResponseEntity.ok(
                 service.findAll().stream().map(UserMinDTO::new).toList()
@@ -49,13 +36,6 @@ public class UserController {
     public ResponseEntity<UserMinDTO> findByCpf(@PathVariable String cpf) {
         return ResponseEntity.ok(
                 new UserMinDTO(service.findByCpf(cpf))
-        );
-    }
-
-    @PostMapping("/login")
-    public ResponseEntity<UserMinDTO> login(@RequestBody UserLoginDTO dto) {
-        return ResponseEntity.ok(
-                new UserMinDTO(service.login(dto))
         );
     }
 }
