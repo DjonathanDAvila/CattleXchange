@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { CattleAd } from '../../../model/cattleAd/cattleAd';
-import { Sex } from '../../../model/cattleAd/enum/sex';
-import { CattleAdStatus } from '../../../model/cattleAd/enum/cattleAdStatus';
+
+import { CattleAd } from '../../../../model/cattleAd/cattleAd';
+import { CattleAdStatus } from '../../../../model/cattleAd/enum/cattleAdStatus';
+import { Sex } from '../../../../model/cattleAd/enum/sex';
 
 @Component({
   selector: 'app-ads',

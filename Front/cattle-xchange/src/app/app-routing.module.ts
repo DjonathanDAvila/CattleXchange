@@ -6,7 +6,7 @@ const routes: Routes = [
   {
     path: 'home',
     loadChildren: () =>
-      import('./cattle/cattle.module').then((m) => m.CattleModule),
+      import('./features/cattle/cattle.module').then((m) => m.CattleModule),
   },
   { path: '**', redirectTo: 'home' }
 ];
