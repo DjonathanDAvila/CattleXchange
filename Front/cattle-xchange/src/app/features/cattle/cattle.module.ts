@@ -20,7 +20,7 @@ import { HomeComponent } from './components/home/home.component';
     FilterCardComponent,
     BreedsComponent,
     AdsComponent,
-    FooterComponent
+    FooterComponent,
   ],
   imports: [
     CommonModule,
