@@ -17,7 +17,7 @@ VALUES
     'Edsu', -- Nome do usuário
     'Adriano', -- Sobrenome do usuário
     'edsu.adriano@email.com', -- E-mail do usuário
-    'senha123', -- Senha do usuário (de preferência, faça hash dela antes de inserir)
+    '$2a$10$xjjBdSzvvnIA6O9uGX94eOK1VN3tLWd0QZB6TYKTimtifyUtqZGZ2', -- Senha do usuário (de preferência, faça hash dela antes de inserir)
     CURDATE() -- Data de criação do usuário (atual)
 );
 
@@ -62,5 +62,5 @@ VALUES
     UNHEX(REPLACE(UUID(), '-', '')),
     @cattle_id,
     1,
-    'url_da_imagem.jpg'
+    'https://www.comprerural.com/wp-content/uploads/2024/02/WhatsApp-Image-2024-02-05-at-11.10.57-750x430.jpeg'
 );

@@ -1,16 +1,16 @@
 import { CommonModule } from '@angular/common';
-import { NgModule, forwardRef } from '@angular/core';
-import { NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
+import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 
-import { AppMaterialModule } from '../shared/app-material/app-material.module';
-import { SharedModule } from '../shared/shared.module';
+import { AppMaterialModule } from '../../shared/app-material/app-material.module';
+import { SharedModule } from '../../shared/shared.module';
 import { CattleRoutingModule } from './cattle-routing.module';
+import { AdsComponent } from './components/ads/ads.component';
+import { BreedsComponent } from './components/breeds/breeds.component';
 import { FilterCardComponent } from './components/filter-card/filter-card.component';
+import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
 import { HomeComponent } from './components/home/home.component';
-import { BreedsComponent } from './components/breeds/breeds.component';
-import { AdsComponent } from './components/ads/ads.component';
-import { FooterComponent } from './components/footer/footer.component';
 
 
 @NgModule({
@@ -20,7 +20,7 @@ import { FooterComponent } from './components/footer/footer.component';
     FilterCardComponent,
     BreedsComponent,
     AdsComponent,
-    FooterComponent
+    FooterComponent,
   ],
   imports: [
     CommonModule,
