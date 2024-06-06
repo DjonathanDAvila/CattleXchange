@@ -45,7 +45,7 @@ VALUES
         UNHEX(REPLACE(UUID(), '-', '')),
         @cattle_id,
         1,
-        'url_da_imagem_boi_angus.jpg'
+        'https://www.lancerural.com.br/wp-content/uploads/2021/06/ANGUS.jpg'
     );
 
 SET @cattle_id = UNHEX(REPLACE(UUID(), '-', ''));
@@ -93,7 +93,7 @@ VALUES
         UNHEX(REPLACE(UUID(), '-', '')),
         @cattle_id,
         1,
-        'url_da_imagem_boi_hereford.jpg'
+        'https://upload.wikimedia.org/wikipedia/commons/c/cf/Hereford_bull_in_a_field_by_the_B4452_%28cropped%29.jpg'
     );
 
 SET @cattle_id = UNHEX(REPLACE(UUID(), '-', ''));
@@ -141,7 +141,7 @@ VALUES
         UNHEX(REPLACE(UUID(), '-', '')),
         @cattle_id,
         1,
-        'url_da_imagem_vaca_holandesa.jpg'
+        'https://www.comprerural.com/wp-content/uploads/2016/08/holandesa-vaca.jpg'
     );
 
 
@@ -190,7 +190,7 @@ VALUES
     UNHEX(REPLACE(UUID(), '-', '')),
     @cattle_id,
     1,
-    'url_da_imagem_vaca_charoles.jpg'
+    'https://www.comprerural.com/wp-content/uploads/2024/02/WhatsApp-Image-2024-02-05-at-11.10.57-750x430.jpeg'
 );
 
 
@@ -242,7 +242,7 @@ VALUES
         UNHEX(REPLACE(UUID(), '-', '')),
         @cattle_id,
         1,
-        'url_da_imagem_touro_angus.jpg'
+        'https://images.tcdn.com.br/img/img_prod/774746/river_aberdeen_angus_8761_1_88f1c4e2e4b175571758cbd01bcfa5db.jpg'
     );
 
 SET @cattle_id = UNHEX(REPLACE(UUID(), '-', ''));
@@ -290,5 +290,5 @@ VALUES
         UNHEX(REPLACE(UUID(), '-', '')),
         @cattle_id,
         1,
-        'url_da_imagem_novilha_brangus.jpg'
+        'https://dicas.boisaude.com.br/wp-content/uploads/2019/07/brangus.png'
     );
