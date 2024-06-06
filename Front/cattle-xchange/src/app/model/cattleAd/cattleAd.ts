@@ -5,7 +5,7 @@ import { Sex } from "./enum/sex";
 export interface CattleAd {
   id: string;
   title: string;
-  description?: string;
+  desc?: string;
   unitValue: number;
   quantity: number;
   breed: string;
@@ -15,5 +15,5 @@ export interface CattleAd {
   state: string;
   creationDate?: Date;
   status: CattleAdStatus;
-  images: Image[];
+  cattleAdImages: Image[];
 }

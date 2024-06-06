@@ -4,13 +4,11 @@
       <mat-card-header>
         <mat-card-title>{{ ad.title }}</mat-card-title>
       </mat-card-header>
-      <img mat-card-image [src]="ad.images[0]?.url" alt="Photo of cattle" />
+      <img mat-card-image [src]="ad.cattleAdImages[0].url" alt="Photo of cattle" />
       <mat-card-content class="ad-info">
         <div>
           <p>Raça: {{ ad.breed }}</p>
           <p>Região: {{ ad.city }} - {{ ad.state }}</p>
-        </div>
-        <div>
           <p>Quantidade: {{ ad.quantity }}</p>
           <p>Sexo: {{ ad.sex }}</p>
         </div>
