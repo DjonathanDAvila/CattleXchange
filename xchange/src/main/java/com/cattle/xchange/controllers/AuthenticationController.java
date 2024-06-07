@@ -4,6 +4,7 @@ import com.cattle.xchange.domain.user.auth.AuthenticationRequest;
 import com.cattle.xchange.domain.user.auth.AuthenticationResponse;
 import com.cattle.xchange.domain.user.auth.AuthenticationService;
 import com.cattle.xchange.domain.user.auth.RegisterRequest;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/auth")
 @RequiredArgsConstructor
+@Tag(name = "AUTHENTICATION", description = "Methods for login and register")
 public class AuthenticationController {
 
     private final AuthenticationService authService;
