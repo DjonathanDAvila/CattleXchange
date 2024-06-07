@@ -33,7 +33,7 @@ public record CattleAdMinDTO(
         @NotBlank
         SexEnum sex,
         @NotBlank
-        UUID cattleAdCod,
+        UUID userCod,
         @NotBlank
         String city,
         @NotBlank
