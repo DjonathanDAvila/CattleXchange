@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Breed } from '../../../../model/cattleAd/breed';
+import { Breed } from '../../../../model/cattleAd/cattle/breed';
 
 @Component({
   selector: 'app-breeds',

@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
+import { State } from '../../model/state/state';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -12,11 +14,14 @@ export class IbgeService {
 
   constructor(private http: HttpClient) { }
 
-  getStates(): Observable<string[]> {
+  getStates(): Observable<State[]> {
     return this.http.get<any[]>(`${this.BASE_URL}/estados`).pipe(
-      map(states => states
-        .map(state => `${state.nome} - ${state.sigla}`)
-        .sort((a, b) => a.localeCompare(b))
+      map(response => response
+        .map(state => ({
+          name: state.nome,
+          uf: state.sigla
+        }))
+        .sort((a, b) => a.name.localeCompare(b.name))
       )
     );
   }

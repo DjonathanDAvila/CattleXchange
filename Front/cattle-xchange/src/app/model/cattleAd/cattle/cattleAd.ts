@@ -1,6 +1,6 @@
-import { Image } from "../image/image";
-import { CattleAdStatus } from "./enum/cattleAdStatus";
-import { Sex } from "./enum/sex";
+import { Image } from "../../image/image";
+import { CattleAdStatus } from "../enum/cattleAdStatus";
+import { Sex } from "../enum/sex";
 
 export interface CattleAd {
   id: string;
