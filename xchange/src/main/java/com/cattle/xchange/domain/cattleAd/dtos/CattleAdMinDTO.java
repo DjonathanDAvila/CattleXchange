@@ -1,5 +1,6 @@
 package com.cattle.xchange.domain.cattleAd.dtos;
 
+import com.cattle.xchange.controllers.CattleAdController;
 import com.cattle.xchange.domain.cattleAd.CattleAd;
 import com.cattle.xchange.domain.cattleAd.enums.BreedEnum;
 import com.cattle.xchange.domain.cattleAd.enums.CattleStatusEnum;
@@ -7,6 +8,8 @@ import com.cattle.xchange.domain.cattleAd.enums.SexEnum;
 import com.cattle.xchange.domain.cattleAdImage.dtos.CattleAdImageMinDTO;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.validation.constraints.NotBlank;
+import org.springframework.hateoas.Link;
+import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -41,26 +44,32 @@ public record CattleAdMinDTO(
         @NotBlank
         CattleStatusEnum status,
         @NotBlank
-        List<CattleAdImageMinDTO> cattleAdImages
+        List<CattleAdImageMinDTO> cattleAdImages,
+
+        @NotBlank
+        Link cattleAdLink
 ) {
-        public CattleAdMinDTO(CattleAd user) {
+        public CattleAdMinDTO(CattleAd cattleAd) {
                 this(
-                        user.getId().toString(),
-                        user.getTitle(),
-                        user.getDesc(),
-                        user.getUnitValue(),
-                        user.getQuantity(),
-                        user.getBreed(),
-                        user.getSex(),
-                        user.getUserCod(),
-                        user.getCity(),
-                        user.getState(),
-                        user.getAdDate(),
-                        user.getStatus(),
-                        user.getCattleAdImages()
+                        cattleAd.getId().toString(),
+                        cattleAd.getTitle(),
+                        cattleAd.getDesc(),
+                        cattleAd.getUnitValue(),
+                        cattleAd.getQuantity(),
+                        cattleAd.getBreed(),
+                        cattleAd.getSex(),
+                        cattleAd.getUserCod(),
+                        cattleAd.getCity(),
+                        cattleAd.getState(),
+                        cattleAd.getAdDate(),
+                        cattleAd.getStatus(),
+                        cattleAd.getCattleAdImages()
                                 .stream()
                                 .map(cattleAdImage -> new CattleAdImageMinDTO(cattleAdImage))
-                                .collect(Collectors.toList())
+                                .collect(Collectors.toList()),
+                        WebMvcLinkBuilder.linkTo(
+                                        WebMvcLinkBuilder.methodOn(CattleAdController.class).findCattleAdById(cattleAd.getId()))
+                                .withSelfRel()
                 );
 
         }
