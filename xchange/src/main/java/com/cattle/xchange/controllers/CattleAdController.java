@@ -86,15 +86,15 @@ public class CattleAdController {
             description = "Response is Cattle Ads Object by sex, city, state, maxPrice and breed with pagination")
     @GetMapping("/search")
     public ResponseEntity<Page<CattleAdMinDTO>> findByCriteria(
-            @RequestParam(required = false) SexEnum sex,
-            @RequestParam(required = false) String city,
-            @RequestParam(required = false) String state,
+            @RequestParam(required = false) List<SexEnum> sex,
+            @RequestParam(required = false) List<String> cities,
+            @RequestParam(required = false) List<String> states,
             @RequestParam(required = false) Double maxPrice,
             @RequestParam(required = false) BreedEnum breed,
             Pageable pageable
     ) {
         return ResponseEntity.ok(
-                _cattleService.findByCriteria(sex, city, state, maxPrice, breed, pageable)
+                _cattleService.findByCriteria(sex, cities, states, maxPrice, breed, pageable)
                         .map(CattleAdMinDTO::new)
         );
     }
