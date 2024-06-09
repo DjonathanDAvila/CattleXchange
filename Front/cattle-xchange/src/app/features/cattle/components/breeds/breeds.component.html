@@ -1,5 +1,5 @@
 <div class="breed-cards-list">
-  <mat-card class="breed-card" *ngFor="let breed of breeds" (click)="filterByBreed(breed.breedName)">
+  <mat-card class="breed-card" *ngFor="let breed of breeds" (click)="filterByBreed(breed.breedName.toUpperCase())">
     <img
       mat-card-image
       src="{{ breed.imageUrl }}"
