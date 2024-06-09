@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { response } from 'express';
 
 import { CattleAd } from '../../../../model/cattleAd/cattle/cattleAd';
 import { CattleAdsPage } from '../../../../model/cattleAd/page/cattlePage';
 import { AdsService } from '../../../../services/ads/ads.service';
 import { FilterService } from '../../../../services/filter/filter.service';
-import { response } from 'express';
 
 @Component({
   selector: 'app-ads',
@@ -17,7 +18,11 @@ export class AdsComponent implements OnInit {
   currentPage: number = 0;
   pageSize: number = 10;
 
-  constructor(private adsService: AdsService, private filterService: FilterService) {}
+  constructor(
+    private adsService: AdsService,
+    private filterService: FilterService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.fetchAds();
@@ -58,7 +63,9 @@ export class AdsComponent implements OnInit {
   }
 
   findAdById(id: string): void {
-    this.adsService.findById(id).subscribe((response: CattleAd) => console.log(response));
+    this.adsService.findById(id).subscribe((response: CattleAd) => {
+      this.router.navigate(['/ad-details']);
+    });
   }
 
   onPageChange(event: any): void {

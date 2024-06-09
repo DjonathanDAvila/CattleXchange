@@ -12,6 +12,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
+import { DetailedAdComponent } from './components/detailed-ad/detailed-ad.component';
 @NgModule({
   declarations: [
     HomeComponent,
@@ -20,7 +21,8 @@ import { LoginComponent } from './components/login/login.component';
     BreedsComponent,
     AdsComponent,
     FooterComponent,
-    LoginComponent
+    LoginComponent,
+    DetailedAdComponent
   ],
   imports: [
     CommonModule,
