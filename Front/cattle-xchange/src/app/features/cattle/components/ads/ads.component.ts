@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { response } from 'express';
 
 import { CattleAd } from '../../../../model/cattleAd/cattle/cattleAd';
@@ -13,6 +13,7 @@ import { FilterService } from '../../../../services/filter/filter.service';
   styleUrls: ['./ads.component.scss'],
 })
 export class AdsComponent implements OnInit {
+
   ads: CattleAd[] = [];
   totalElements: number = 0;
   currentPage: number = 0;
@@ -21,7 +22,8 @@ export class AdsComponent implements OnInit {
   constructor(
     private adsService: AdsService,
     private filterService: FilterService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
@@ -62,10 +64,8 @@ export class AdsComponent implements OnInit {
       });
   }
 
-  findAdById(id: string): void {
-    this.adsService.findById(id).subscribe((response: CattleAd) => {
-      this.router.navigate(['/ad-details']);
-    });
+  detail(id: string): void {
+    this.router.navigate(['/ad-details', id]);
   }
 
   onPageChange(event: any): void {
