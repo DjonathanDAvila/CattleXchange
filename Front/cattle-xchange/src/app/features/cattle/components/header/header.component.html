@@ -3,9 +3,9 @@
     <img src="../../../../assets/main-logo.png" alt="Logo of a bull" />
   </div>
   <div class="nav-links">
-    <span>HOME</span>
-    <span>ANUNCIAR</span>
-    <span>OPERAÇÕES</span>
+    <span (click)="navigateTo('')">HOME</span>
+    <span (click)="navigateTo('/anounce')">ANUNCIAR</span>
+    <span (click)="navigateTo('/operations')">OPERAÇÕES</span>
     <span class="p-entrar"><mat-icon>person</mat-icon>ENTRAR</span>
   </div>
 </mat-toolbar>
