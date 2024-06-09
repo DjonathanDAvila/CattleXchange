@@ -7,7 +7,9 @@ import com.cattle.xchange.domain.cattleAd.enums.SexEnum;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import org.springframework.hateoas.RepresentationModel;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -17,9 +19,10 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
+@EqualsAndHashCode(callSuper = true)
 @Table(name = "tcattle_ad")
 @Entity
-public class CattleAd {
+public class CattleAd extends RepresentationModel<CattleAd> {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "bd_codad")

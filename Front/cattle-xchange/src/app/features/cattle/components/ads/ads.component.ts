@@ -4,6 +4,7 @@ import { CattleAd } from '../../../../model/cattleAd/cattle/cattleAd';
 import { CattleAdsPage } from '../../../../model/cattleAd/page/cattlePage';
 import { AdsService } from '../../../../services/ads/ads.service';
 import { FilterService } from '../../../../services/filter/filter.service';
+import { response } from 'express';
 
 @Component({
   selector: 'app-ads',
@@ -57,7 +58,7 @@ export class AdsComponent implements OnInit {
   }
 
   findAdById(id: string): void {
-    // Your implementation for finding an ad by its id
+    this.adsService.findById(id).subscribe((response: CattleAd) => console.log(response));
   }
 
   onPageChange(event: any): void {

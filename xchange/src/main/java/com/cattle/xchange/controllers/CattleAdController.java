@@ -26,9 +26,6 @@ public class CattleAdController {
     @Autowired
     private CattleAdService _cattleService;
 
-    @Autowired
-    private UserService _userService;
-
     @Operation(summary = "Find all Cattle Ads",
             description = "Response is a list of Cattle Ad Objects.")
     @GetMapping("/")
@@ -71,9 +68,9 @@ public class CattleAdController {
     @Operation(summary = "Remove Cattle Ads by Id",
             description = "Response is a message of success or not found")
     @DeleteMapping("/{id}")
-    public ResponseEntity deleteById(@PathVariable UUID id) {
+    public ResponseEntity<String> deleteById(@PathVariable UUID id) {
 
-        if (!_cattleService.findCattleAdById(id).isPresent())
+        if (_cattleService.findCattleAdById(id).isEmpty())
             return ResponseEntity.notFound().build();
 
 
