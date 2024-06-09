@@ -11,5 +11,6 @@ public enum BreedEnum {
     ANGUS_ABERDEEN_POLLED,
     BRANGUS,
     GUZERA,
-    WAGYU
+    WAGYU,
+    NELORE
 }

@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { AdsService } from '../../../../services/ads/ads.service';
-import { FilterService } from '../../../../services/filter/filter.service'; // Import the new service
+
 import { CattleAd } from '../../../../model/cattleAd/cattle/cattleAd';
 import { CattleAdsPage } from '../../../../model/cattleAd/page/cattlePage';
+import { AdsService } from '../../../../services/ads/ads.service';
+import { FilterService } from '../../../../services/filter/filter.service';
 
 @Component({
   selector: 'app-ads',
@@ -23,7 +24,7 @@ export class AdsComponent implements OnInit {
     // Subscribe to filter criteria changes
     this.filterService.getFilterCriteria().subscribe(criteria => {
       if (criteria) {
-        this.filterBy(criteria.sex, criteria.cities, criteria.states, criteria.maxPrice);
+        this.filterBy(criteria.sex, criteria.cities, criteria.states, criteria.maxPrice, criteria.breed);
       }
     });
   }

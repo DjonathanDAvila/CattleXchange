@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Breed } from '../../../../model/cattleAd/cattle/breed';
+import { FilterService } from '../../../../services/filter/filter.service';
 
 @Component({
   selector: 'app-breeds',
@@ -9,7 +10,9 @@ import { Breed } from '../../../../model/cattleAd/cattle/breed';
 export class BreedsComponent {
   breeds: Breed[] = [];
 
-  constructor() {
+  constructor(
+    private filterService: FilterService
+  ) {
     this.getBreeds();
   }
 
@@ -38,7 +41,9 @@ export class BreedsComponent {
     ];
   }
 
-  filterByBreed(breedName: string) {
-    console.log(breedName);
+  filterByBreed(breedName: string): void {
+    this.filterService.setFilterCriteria({
+      breed: breedName
+    });
   }
 }
