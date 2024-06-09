@@ -1,10 +1,12 @@
-<mat-card class="cattle-main-card">
+<mat-card class="cattle-main-card" #cardsContainer>
   <div class="cards-container">
-    <mat-card class="cattle-ad-card" *ngFor="let ad of ads" (click)="findAdById(ad.id)">
+    <mat-card *ngFor="let ad of ads; let first = first" class="cattle-ad-card" (click)="findAdById(ad.id)">
       <mat-card-header>
         <mat-card-title>{{ ad.title }}</mat-card-title>
       </mat-card-header>
-      <img mat-card-image [src]="ad.images[0]?.url" alt="Photo of cattle" />
+      <ng-container *ngIf="ad.cattleAdImages && ad.cattleAdImages.length > 0">
+        <img mat-card-image [src]="ad.cattleAdImages[0].url" alt="Photo of cattle" />
+      </ng-container>
       <mat-card-content class="ad-info">
         <div>
           <p>Raça: {{ ad.breed }}</p>
@@ -16,8 +18,10 @@
         </div>
       </mat-card-content>
       <div class="ad-price">
-        <p>R$: {{ ad.unitValue }}/unid</p>
+        <p>R$: {{ ad.unitValue | currency:'BRL' }}/unid</p>
       </div>
     </mat-card>
   </div>
+  <mat-paginator [length]="totalElements" [pageSize]="pageSize" (page)="onPageChange($event)">
+  </mat-paginator>
 </mat-card>

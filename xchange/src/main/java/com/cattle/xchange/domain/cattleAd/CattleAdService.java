@@ -65,7 +65,7 @@ public class CattleAdService {
     }
 
     @Transactional(readOnly = true)
-    public Page<CattleAd> findByCriteria(SexEnum sex, String city, String state, Double maxPrice, BreedEnum breed, Pageable pageable) {
+    public Page<CattleAd> findByCriteria(List<SexEnum> sex, List<String> city, List<String> state, Double maxPrice, BreedEnum breed, Pageable pageable) {
         return _cattleRepository.findByCriteria(sex, city, state, maxPrice, breed, pageable);
     }
 

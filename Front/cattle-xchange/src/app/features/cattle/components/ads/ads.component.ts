@@ -1,112 +1,66 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
-import { CattleAd } from '../../../../model/cattleAd/cattleAd';
-import { CattleAdStatus } from '../../../../model/cattleAd/enum/cattleAdStatus';
-import { Sex } from '../../../../model/cattleAd/enum/sex';
+import { CattleAd } from '../../../../model/cattleAd/cattle/cattleAd';
+import { CattleAdsPage } from '../../../../model/cattleAd/page/cattlePage';
+import { AdsService } from '../../../../services/ads/ads.service';
+import { FilterService } from '../../../../services/filter/filter.service';
 
 @Component({
   selector: 'app-ads',
   templateUrl: './ads.component.html',
-  styleUrl: './ads.component.scss'
+  styleUrls: ['./ads.component.scss'],
 })
-export class AdsComponent {
-
+export class AdsComponent implements OnInit {
   ads: CattleAd[] = [];
+  totalElements: number = 0;
+  currentPage: number = 0;
+  pageSize: number = 10;
 
-  constructor() {
-    this.onInit()
-  }
+  constructor(private adsService: AdsService, private filterService: FilterService) {}
 
-  onInit() {
-    this.findAllAds();
-  }
+  ngOnInit(): void {
+    this.fetchAds();
 
-  findAllAds() {
-    this.ads = [
-      {
-        id: '1',
-        title: 'Angus Bull',
-        description: 'High-quality Angus bull for sale',
-        unitValue: 1500,
-        quantity: 1,
-        breed: 'Angus',
-        sex: Sex.M,
-        announcer: 'John Doe',
-        city: 'São Paulo',
-        state: 'SP',
-        creationDate: new Date('2024-04-25'),
-        status: CattleAdStatus.ACTIVE,
-        images: [
-          { id: '1', sequence: 1, url: 'https://www.lancerural.com.br/wp-content/uploads/2021/06/ANGUS.jpg' },
-          { id: '2', sequence: 2, url: 'https://www.lancerural.com.br/wp-content/uploads/2021/06/ANGUS.jpg' }
-        ]
-      },
-      {
-        id: '2',
-        title: 'Hereford Heifer',
-        unitValue: 1200,
-        quantity: 2,
-        breed: 'Hereford',
-        sex: Sex.F,
-        announcer: 'Jane Smith',
-        city: 'Rio de Janeiro',
-        state: 'RJ',
-        status: CattleAdStatus.ACTIVE,
-        images: [
-          { id: '3', sequence: 1, url: 'https://www.lancerural.com.br/wp-content/uploads/2021/06/ANGUS.jpg' }
-        ]
-      },
-      {
-        id: '3',
-        title: 'Limousin Bull',
-        unitValue: 1800,
-        quantity: 1,
-        breed: 'Limousin',
-        sex: Sex.M,
-        announcer: 'Alice Johnson',
-        city: 'Blumenau',
-        state: 'SC',
-        creationDate: new Date('2024-04-24'),
-        status: CattleAdStatus.ACTIVE,
-        images: [
-          { id: '4', sequence: 1, url: 'https://www.lancerural.com.br/wp-content/uploads/2021/06/ANGUS.jpg' }
-        ]
-      },
-      {
-        id: '4',
-        title: 'Holstein Cow',
-        unitValue: 1000,
-        quantity: 3,
-        breed: 'Holstein',
-        sex: Sex.F,
-        announcer: 'Bob Brown',
-        city: 'Porto Alegre',
-        state: 'RS',
-        creationDate: new Date('2024-04-23'),
-        status: CattleAdStatus.INACTIVE,
-        images: [
-          { id: '6', sequence: 1, url: 'https://www.lancerural.com.br/wp-content/uploads/2021/06/ANGUS.jpg' }
-        ]
-      },
-      {
-        id: '5',
-        title: 'Charolais Bull',
-        unitValue: 2000,
-        quantity: 1,
-        breed: 'Charolais',
-        sex: Sex.M,
-        announcer: 'Eva Martinez',
-        city: 'Curitiba',
-        state: 'PR',
-        status: CattleAdStatus.SOLDED,
-        images: [
-          { id: '5', sequence: 1, url: 'https://www.lancerural.com.br/wp-content/uploads/2021/06/ANGUS.jpg' }
-        ]
+    // Subscribe to filter criteria changes
+    this.filterService.getFilterCriteria().subscribe(criteria => {
+      if (criteria) {
+        this.filterBy(criteria.sex, criteria.cities, criteria.states, criteria.maxPrice, criteria.breed);
       }
-    ]
+    });
   }
 
-  findAdById(id: string) {
-    console.log(id);
+  fetchAds(page: number = 0): void {
+    this.adsService.searchCattleAds(undefined, undefined, undefined, undefined, undefined, undefined, page, this.pageSize)
+      .subscribe((response: CattleAdsPage) => {
+        this.ads = response.content;
+        this.totalElements = response.totalElements;
+        this.currentPage = response.number;
+      });
+  }
+
+  filterBy(
+    sex?: string[],
+    cities?: string[],
+    states?: string[],
+    maxPrice?: number,
+    breed?: string,
+    sort?: string,
+    page: number = 0,
+    size: number = 10
+  ): void {
+    this.adsService.searchCattleAds(sex, cities, states, maxPrice, breed, sort, page, size)
+      .subscribe((response: CattleAdsPage) => {
+        this.ads = response.content;
+        this.totalElements = response.totalElements;
+        this.currentPage = response.number;
+      });
+  }
+
+  findAdById(id: string): void {
+    // Your implementation for finding an ad by its id
+  }
+
+  onPageChange(event: any): void {
+    this.fetchAds(event.pageIndex);
   }
 }
