@@ -165,12 +165,12 @@ INSERT INTO TCATTLE_AD
 VALUES
     (
         @cattle_id,
-        'Vaca Charolês',
-        'Vaca de raça Charolês, conhecida por sua carne de alta qualidade',
+        'Lote de Charolês',
+        'Lote de raça Charolês, conhecida por sua carne de alta qualidade',
         1800.00,
-        1,
+        10,
         'CHAROLES',
-        'F', -- Sexo feminino
+        'M', -- Sexo Masculino
         @user_id,
         'Curitiba',
         'Paraná',
