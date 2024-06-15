@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { response } from 'express';
 
 import { CattleAd } from '../../../../model/cattleAd/cattle/cattleAd';
 import { CattleAdsPage } from '../../../../model/cattleAd/page/cattlePage';
@@ -11,12 +13,18 @@ import { FilterService } from '../../../../services/filter/filter.service';
   styleUrls: ['./ads.component.scss'],
 })
 export class AdsComponent implements OnInit {
+
   ads: CattleAd[] = [];
   totalElements: number = 0;
   currentPage: number = 0;
   pageSize: number = 10;
 
-  constructor(private adsService: AdsService, private filterService: FilterService) {}
+  constructor(
+    private adsService: AdsService,
+    private filterService: FilterService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
     this.fetchAds();
@@ -56,8 +64,8 @@ export class AdsComponent implements OnInit {
       });
   }
 
-  findAdById(id: string): void {
-    // Your implementation for finding an ad by its id
+  detail(id: string): void {
+    this.router.navigate(['/ad-details', id]);
   }
 
   onPageChange(event: any): void {

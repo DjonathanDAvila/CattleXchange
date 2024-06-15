@@ -1,6 +1,6 @@
 <mat-card class="cattle-main-card" #cardsContainer>
   <div class="cards-container">
-    <mat-card *ngFor="let ad of ads; let first = first" class="cattle-ad-card" (click)="findAdById(ad.id)">
+    <mat-card *ngFor="let ad of ads; let first = first" class="cattle-ad-card" (click)="detail(ad.id)">
       <mat-card-header>
         <mat-card-title>{{ ad.title }}</mat-card-title>
       </mat-card-header>

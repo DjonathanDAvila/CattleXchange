@@ -1,0 +1,39 @@
+<app-header></app-header>
+<mat-card class="card">
+  <div>
+    <h3>{{ ad?.title }}</h3>
+    <p>{{ ad?.desc }}</p>
+  </div>
+  <div class="about">
+    <ng-container *ngIf="isAdValid()">
+      <img
+        class="cattle-img"
+        mat-card-image
+        [src]="ad!.cattleAdImages[0]!.url"
+        alt="Photo of cattle"
+      />
+    </ng-container>
+    <div class="info">
+      <div class="left-pair">
+        <p>Quantidade: {{ ad?.quantity }}</p>
+        <p>Valor por unidade: R$ {{ ad?.unitValue }}</p>
+        <p>Cidade: {{ ad?.city }}</p>
+        <p>Anunciador: {{ ad?.announcer?.name }}</p>
+        <p>Valor total: <span class="total-value">R$ {{ totalbuyValue }}</span></p>
+        <button mat-raised-button class="buy-button" color="primary" (click)="buy(ad!, totalbuyValue)">
+          Comprar
+        </button>
+      </div>
+      <div class="right-pair">
+        <p>Raça: {{ ad?.breed }}</p>
+        <p>Sexo: {{ ad?.sex != "M" ? "Fêmea" : "Macho" }}</p>
+        <p>Estado: {{ ad?.state }}</p>
+        <p>E-Mail: {{ ad?.announcer?.email }}</p>
+      </div>
+    </div>
+  </div>
+  <button mat-raised-button class="back-button" color="secondary" (click)="back()">
+    Voltar
+  </button>
+</mat-card>
+<app-footer></app-footer>

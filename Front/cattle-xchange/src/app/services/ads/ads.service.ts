@@ -2,6 +2,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { CattleAdsPage } from '../../model/cattleAd/page/cattlePage';
+import { CattleAd } from '../../model/cattleAd/cattle/cattleAd';
 
 @Injectable({
   providedIn: 'root',
@@ -33,5 +34,9 @@ export class AdsService {
     params = params.append('size', size.toString());
 
     return this.http.get<CattleAdsPage>(`${this.BASE_URL}/search`, { params });
+  }
+
+  findById(id: string) {
+    return this.http.get<CattleAd>(`${this.BASE_URL}/${id}`);
   }
 }
