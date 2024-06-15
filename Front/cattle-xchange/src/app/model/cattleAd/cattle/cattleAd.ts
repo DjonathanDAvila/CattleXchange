@@ -1,6 +1,7 @@
-import { Image } from "../../image/image";
-import { CattleAdStatus } from "../enum/cattleAdStatus";
-import { Sex } from "../enum/sex";
+import { Image } from '../../image/image';
+import { Announcer } from '../../user/dto/Announcer';
+import { CattleAdStatus } from '../enum/cattleAdStatus';
+import { Sex } from '../enum/sex';
 
 export interface CattleAd {
   id: string;
@@ -10,7 +11,7 @@ export interface CattleAd {
   quantity: number;
   breed: string;
   sex: Sex;
-  announcer: string;
+  announcer: Announcer;
   city: string;
   state: string;
   creationDate?: Date;

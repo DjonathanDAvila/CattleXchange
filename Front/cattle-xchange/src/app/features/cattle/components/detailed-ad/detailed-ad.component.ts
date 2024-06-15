@@ -10,7 +10,9 @@ import { AdsService } from '../../../../services/ads/ads.service';
   styleUrls: ['./detailed-ad.component.scss']
 })
 export class DetailedAdComponent implements OnInit {
+
   ad: CattleAd | undefined;
+  totalbuyValue: number = 0;
 
   constructor(
     private route: ActivatedRoute,
@@ -24,8 +26,25 @@ export class DetailedAdComponent implements OnInit {
       if (adId) {
         this.adsService.findById(adId).subscribe(data => {
           this.ad = data;
+          this.totalbuyValue = this.calculateBuy(this.ad.unitValue, this.ad.quantity);
         });
       }
     });
+  }
+
+  protected isAdValid(): boolean {
+    return !!this.ad && !!this.ad.cattleAdImages && this.ad.cattleAdImages.length > 0;
+  }
+
+  private calculateBuy(unitValue: number, quantity: number): number {
+    return unitValue * quantity;
+  }
+
+  protected buy(ad: CattleAd, totatlBuyValue: number): void {
+
+  }
+
+  back(): void {
+
   }
 }
