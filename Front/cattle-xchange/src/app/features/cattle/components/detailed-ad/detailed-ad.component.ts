@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { CattleAd } from '../../../../model/cattleAd/cattle/cattleAd';
 import { AdsService } from '../../../../services/ads/ads.service';
@@ -16,7 +16,8 @@ export class DetailedAdComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private adsService: AdsService
+    private adsService: AdsService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -45,6 +46,6 @@ export class DetailedAdComponent implements OnInit {
   }
 
   back(): void {
-
+    this.router.navigate(['']);
   }
 }
