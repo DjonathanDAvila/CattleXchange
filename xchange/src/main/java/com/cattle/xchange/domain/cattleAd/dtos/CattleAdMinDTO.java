@@ -6,6 +6,8 @@ import com.cattle.xchange.domain.cattleAd.enums.BreedEnum;
 import com.cattle.xchange.domain.cattleAd.enums.CattleStatusEnum;
 import com.cattle.xchange.domain.cattleAd.enums.SexEnum;
 import com.cattle.xchange.domain.cattleAdImage.dtos.CattleAdImageMinDTO;
+import com.cattle.xchange.domain.user.User;
+import com.cattle.xchange.domain.user.dtos.UserMinDTO;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.validation.constraints.NotBlank;
 import org.springframework.hateoas.Link;
@@ -13,7 +15,6 @@ import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 public record CattleAdMinDTO(
@@ -33,7 +34,7 @@ public record CattleAdMinDTO(
         @NotBlank
         SexEnum sex,
         @NotBlank
-        UUID userCod,
+        UserMinDTO announcer,
         @NotBlank
         String city,
         @NotBlank
@@ -49,7 +50,7 @@ public record CattleAdMinDTO(
         @NotBlank
         Link cattleAdLink
 ) {
-        public CattleAdMinDTO(CattleAd cattleAd) {
+        public CattleAdMinDTO(CattleAd cattleAd, User user) {
                 this(
                         cattleAd.getId().toString(),
                         cattleAd.getTitle(),
@@ -58,14 +59,14 @@ public record CattleAdMinDTO(
                         cattleAd.getQuantity(),
                         cattleAd.getBreed(),
                         cattleAd.getSex(),
-                        cattleAd.getUserCod(),
+                        new UserMinDTO(user),
                         cattleAd.getCity(),
                         cattleAd.getState(),
                         cattleAd.getAdDate(),
                         cattleAd.getStatus(),
                         cattleAd.getCattleAdImages()
                                 .stream()
-                                .map(cattleAdImage -> new CattleAdImageMinDTO(cattleAdImage))
+                                .map(CattleAdImageMinDTO::new)
                                 .collect(Collectors.toList()),
                         WebMvcLinkBuilder.linkTo(
                                         WebMvcLinkBuilder.methodOn(CattleAdController.class).findCattleAdById(cattleAd.getId()))

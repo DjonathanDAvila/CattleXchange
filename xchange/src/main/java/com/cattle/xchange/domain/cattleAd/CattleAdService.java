@@ -40,8 +40,8 @@ public class CattleAdService {
         );
 
         var images = imagesDTO.stream()
-                .map(image -> new CattleAdImage(image))
-                .collect(Collectors.toList());
+                .map(CattleAdImage::new)
+                .toList();
 
 
         for (CattleAdImage image : images)
@@ -57,11 +57,10 @@ public class CattleAdService {
         _cattleRepository.deleteById(id);
     }
 
-    public Boolean atualizaStatus(UUID id, CattleStatusEnum status){
+    public void updateStatus(UUID id, CattleStatusEnum status){
         CattleAd cattleAd = _cattleRepository.findById(id).get();
         cattleAd.setStatus(status);
         _cattleRepository.save(cattleAd);
-        return true;
     }
 
     @Transactional(readOnly = true)

@@ -1,0 +1,54 @@
+.card {
+  width: 80%;
+  margin: auto;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  padding: 30px;
+}
+
+.about {
+  display: flex;
+  flex-direction: row;
+}
+
+.about > .cattle-img {
+  height: 350px;
+  width: 600px;
+}
+
+.info {
+  width: 100%;
+
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.info > .right-pair {
+  margin-left: 10%;
+}
+
+.info > .left-pair {
+  margin-left: 5%;
+}
+
+.info > div > p {
+  padding: 10px;
+}
+
+.total-value {
+  color: #1b5e20;
+  font-size: large;
+  font-weight: bold;
+}
+
+.back-button {
+  width: 80px;
+  margin-top: 20px;
+}
+
+.buy-button {
+  width: 180px;
+  height: 40px;
+  font-size: large;
+}

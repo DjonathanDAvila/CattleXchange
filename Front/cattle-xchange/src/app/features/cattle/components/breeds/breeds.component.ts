@@ -36,7 +36,7 @@ export class BreedsComponent {
       {
         breedName: 'Limousin',
         imageUrl:
-          'https://cdn.globalagmedia.com/uploads/files/breeds/LimousinBull.jpg',
+          'https://www.cows.ie/custom/public/images/limousin.png',
       },
     ];
   }
