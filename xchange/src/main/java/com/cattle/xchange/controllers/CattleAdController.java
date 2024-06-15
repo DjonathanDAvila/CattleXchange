@@ -26,6 +26,9 @@ public class CattleAdController {
     @Autowired
     private CattleAdService _cattleService;
 
+    @Autowired
+    private UserService _userService;
+
     @Operation(summary = "Find all Cattle Ads",
             description = "Response is a list of Cattle Ad Objects.")
     @GetMapping("/")
@@ -39,7 +42,7 @@ public class CattleAdController {
         List<CattleAdMinDTO> cattleListDTO = new ArrayList<>();
 
         for (CattleAd cattle : cattleList) {
-            CattleAdMinDTO cattleDTO = new CattleAdMinDTO(cattle);
+            CattleAdMinDTO cattleDTO = new CattleAdMinDTO(cattle, _userService.findUserById(cattle.getUserCod()));
             cattleListDTO.add(cattleDTO);
         }
 
@@ -56,7 +59,7 @@ public class CattleAdController {
 
         if (optionalCattle.isPresent()) {
             CattleAd cattle = optionalCattle.get();
-            CattleAdMinDTO cattleDTO = new CattleAdMinDTO(cattle);
+            CattleAdMinDTO cattleDTO = new CattleAdMinDTO(cattle, _userService.findUserById(cattle.getUserCod()));
             return ResponseEntity.ok(cattleDTO);
         } else {
             return ResponseEntity.noContent().build();
@@ -92,7 +95,7 @@ public class CattleAdController {
     ) {
         return ResponseEntity.ok(
                 _cattleService.findByCriteria(sex, cities, states, maxPrice, breed, pageable)
-                        .map(CattleAdMinDTO::new)
+                        .map((c) -> new CattleAdMinDTO(c, _userService.findUserById(c.getUserCod())))
         );
     }
 
@@ -106,7 +109,7 @@ public class CattleAdController {
     ) {
         return ResponseEntity.ok(
                 _cattleService.findByUser(userId, pageable)
-                        .map(CattleAdMinDTO::new)
+                        .map((c) -> new CattleAdMinDTO(c, _userService.findUserById(c.getUserCod())))
         );
     }
 }

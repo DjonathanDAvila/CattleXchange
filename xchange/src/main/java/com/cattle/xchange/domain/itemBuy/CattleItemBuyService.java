@@ -28,7 +28,7 @@ public class CattleItemBuyService {
             );
             totalBuy += item.cattleAd().getUnitValue();
             cattleItemBuyList.add(cattleItemBuy);
-            cattleAdService.atualizaStatus(item.cattleAd().getId(), CattleStatusEnum.SOLDED);
+            cattleAdService.updateStatus(item.cattleAd().getId(), CattleStatusEnum.SOLDED);
         }
 
         cattleItemBuyRepository.saveAll(cattleItemBuyList);
