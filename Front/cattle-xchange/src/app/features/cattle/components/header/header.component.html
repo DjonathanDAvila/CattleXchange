@@ -5,8 +5,19 @@
   <div class="nav-links">
     <span (click)="navigateTo('')">HOME</span>
     <span (click)="navigateTo('/anounce')">ANUNCIAR</span>
-    <span (click)="navigateTo('/operations')">OPERAÇÕES</span>
-    <span (click)="navigateTo('/login')" class="p-entrar"><mat-icon>person</mat-icon>ENTRAR</span>
+    <span>
+      <button class="nav-links" mat-button [matMenuTriggerFor]="menu">
+        OPERAÇÕES
+      </button>
+      <mat-menu #menu="matMenu">
+        <button (click)="navigateTo('/operations/myAds')" mat-menu-item>
+          Meus Anúncios
+        </button>
+        <button (click)="navigateTo('/operations/myBuys')" mat-menu-item>Minhas Compras</button>
+      </mat-menu>
+    </span>
+    <span (click)="navigateTo('/login')" class="p-entrar"
+      ><mat-icon>person</mat-icon>ENTRAR</span
+    >
   </div>
 </mat-toolbar>
-
