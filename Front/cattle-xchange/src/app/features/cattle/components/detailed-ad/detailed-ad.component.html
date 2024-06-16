@@ -20,7 +20,7 @@
         <p>Cidade: {{ ad?.city }}</p>
         <p>Anunciador: {{ ad?.announcer?.name }}</p>
         <p>Valor total: <span class="total-value">R$ {{ totalbuyValue }}</span></p>
-        <button mat-raised-button class="buy-button" color="primary" (click)="buy(ad!, totalbuyValue)">
+        <button mat-raised-button class="buy-button" color="primary" (click)="buy(ad!)">
           Comprar
         </button>
       </div>
