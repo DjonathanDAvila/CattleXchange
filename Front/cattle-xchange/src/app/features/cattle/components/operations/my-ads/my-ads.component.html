@@ -1,0 +1,62 @@
+<header>
+  <app-header></app-header>
+</header>
+<mat-card>
+  <mat-card-content>
+    <mat-toolbar color="primary">
+      <span>Meus anúncios</span>
+    </mat-toolbar>
+
+    <table mat-table [dataSource]="cattleAds" class="mat-elevation-z8">
+      <!--- Note that these columns can be defined in any order.
+              The actual rendered columns are set as a property on the row definition" -->
+
+      <!-- title Column -->
+      <ng-container matColumnDef="title">
+        <th mat-header-cell *matHeaderCellDef>Título do anúncio</th>
+        <td mat-cell *matCellDef="let cattleAd">{{ cattleAd.title }}</td>
+      </ng-container>
+
+      <!-- creationDate Column -->
+      <ng-container matColumnDef="creationDate">
+        <th mat-header-cell *matHeaderCellDef>Data de criação</th>
+        <td mat-cell *matCellDef="let cattleAd">
+          {{ cattleAd.creationDate }}
+        </td>
+      </ng-container>
+
+      <!-- status Column -->
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef>Status</th>
+        <td mat-cell *matCellDef="let cattleAd">{{ cattleAd.status }}</td>
+      </ng-container>
+
+      <!-- actions Column -->
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef>Ações</th>
+        <td mat-cell *matCellDef="let cattleAd" class="action-column">
+          <button
+            mat-icon-button
+            color="primary"
+            matTooltip="Editar"
+            aria-label="Editar Participant"
+          >
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button
+            mat-icon-button
+            color="secundary"
+            matTooltip="Ver detalhes"
+            aria-label="Remover Participant"
+            (click)="onDetails(cattleAd.id)"
+          >
+            <mat-icon>preview</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+  </mat-card-content>
+</mat-card>
