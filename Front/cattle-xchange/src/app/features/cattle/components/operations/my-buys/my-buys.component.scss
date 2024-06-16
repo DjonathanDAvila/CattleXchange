@@ -1,0 +1,15 @@
+.item-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.item-info {
+  display: flex;
+  align-items: center;
+}
+
+.item-actions {
+  margin-left: 16px;
+}
