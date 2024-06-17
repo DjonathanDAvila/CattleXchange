@@ -13,11 +13,20 @@
         <button (click)="navigateTo('/operations/myAds')" mat-menu-item>
           Meus Anúncios
         </button>
-        <button (click)="navigateTo('/operations/myBuys')" mat-menu-item>Minhas Compras</button>
+        <button (click)="navigateTo('/operations/myBuys')" mat-menu-item>
+          Minhas Compras
+        </button>
       </mat-menu>
     </span>
-    <span (click)="navigateTo('/login')" class="p-entrar"
-      ><mat-icon>person</mat-icon>ENTRAR</span
-    >
+    <ng-container *ngIf="!isAuthenticated">
+      <span (click)="navigateTo('/login')" class="p-entrar">
+        <mat-icon>person</mat-icon>ENTRAR
+      </span>
+    </ng-container>
+    <ng-container *ngIf="isAuthenticated">
+      <span (click)="logout()" class="p-entrar">
+        <mat-icon>logout</mat-icon>SAIR
+      </span>
+    </ng-container>
   </div>
 </mat-toolbar>

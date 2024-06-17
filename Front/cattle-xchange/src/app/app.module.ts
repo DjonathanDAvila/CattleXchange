@@ -15,6 +15,7 @@ import {
   withFetch,
 } from '@angular/common/http';
 import { AuthInterceptor } from './services/auth/interceptor/auth-interceptor';
+import { NavigationService } from './services/navigation/navigation.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -24,6 +25,7 @@ import { AuthInterceptor } from './services/auth/interceptor/auth-interceptor';
     provideAnimationsAsync(),
     provideHttpClient(withFetch()),
     IbgeService,
+    NavigationService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
