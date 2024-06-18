@@ -9,7 +9,8 @@ import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import java.util.UUID;
 
 public record CattleAdForBuyMinDTO
-        (@NotBlank
+        (UUID id,
+         @NotBlank
          String title,
          @NotBlank
          double unitValue,
@@ -23,6 +24,7 @@ public record CattleAdForBuyMinDTO
         ) {
     public CattleAdForBuyMinDTO(CattleAd cattleAd) {
         this(
+                cattleAd.getId(),
                 cattleAd.getTitle(),
                 cattleAd.getUnitValue(),
                 cattleAd.getQuantity(),
