@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 
@@ -43,15 +43,8 @@ export class AdsService {
   }
 
   findByUser(userId: string): Observable<CattleAd[]> {
-    const token = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjYXJsb3MuZmVycmVpcmFAZW1haWwuY29tIiwiaWF0IjoxNzE4NTc4NTE5LCJleHAiOjE3MTg1Nzk5NTl9.OERr81A_T81rl_1yV-Di_N8bOzuW9fkr0q5Sl_Z_wWA';
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${token}`
-    });
-
     return this.http
       .get<{ content: CattleAd[] }>(`${this.BASE_URL}/user`, {
-        headers: headers,
         params: {
           userId: userId,
           page: '0',
