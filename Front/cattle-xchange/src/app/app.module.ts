@@ -1,21 +1,12 @@
+import { HTTP_INTERCEPTORS, HttpClientModule, provideHttpClient, withFetch } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import {
-  BrowserModule,
-  provideClientHydration,
-} from '@angular/platform-browser';
+import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { IbgeService } from './services/ibge/ibge.service';
-import {
-  HTTP_INTERCEPTORS,
-  HttpClientModule,
-  provideHttpClient,
-  withFetch,
-} from '@angular/common/http';
 import { AuthInterceptor } from './services/auth/interceptor/auth-interceptor';
-import { NavigationService } from './services/navigation/navigation.service';
+import { IbgeService } from './services/ibge/ibge.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -25,7 +16,6 @@ import { NavigationService } from './services/navigation/navigation.service';
     provideAnimationsAsync(),
     provideHttpClient(withFetch()),
     IbgeService,
-    NavigationService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,

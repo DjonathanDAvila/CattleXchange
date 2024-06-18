@@ -1,10 +1,10 @@
+import { Location } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
-import { NavigationService } from '../navigation/navigation.service';
 import { isBrowser } from '../utils/browser/is-browser';
 
 @Injectable({
@@ -16,7 +16,7 @@ export class AuthService {
   constructor(
     private http: HttpClient,
     private router: Router,
-    private navigationService: NavigationService
+    private location: Location
   ) {}
 
   login(email: string, password: string): Observable<any> {
@@ -27,8 +27,7 @@ export class AuthService {
           if (isBrowser()) {
             localStorage.setItem('token', response.token);
           }
-          const redirectUrl = this.navigationService.getLastUrl() || '/';
-          this.router.navigate([redirectUrl]);
+          this.location.back();
         })
       );
   }
