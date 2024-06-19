@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -47,11 +46,9 @@ public class CattleBuyController {
     @Operation(summary = "Find All Cattle Buy by user",
             description = "Response is a List of Cattle Buy Objects by user with pagination.")
     @GetMapping("/user")
-    public ResponseEntity<Page<CattleBuyMinDTO>> findByUserId(
-                                    @RequestParam UUID userId,
-                                    Pageable pageable) {
+    public ResponseEntity<Page<CattleBuyMinDTO>> findAllByCurrentUser(Pageable pageable) {
         return ResponseEntity.ok(
-                cattleBuyService.findByUserId(userId, pageable)
+                cattleBuyService.findAllByCurrentUser(pageable)
                         .map(CattleBuyMinDTO::new)
         );
     }
