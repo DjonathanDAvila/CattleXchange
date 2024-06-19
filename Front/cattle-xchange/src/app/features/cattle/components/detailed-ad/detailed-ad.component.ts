@@ -5,6 +5,7 @@ import { AdsService } from '../../../../services/ads/ads.service';
 import { AuthService } from '../../../../services/auth/auth.service';
 import { BuyService } from '../../../../services/buy/buy.service';
 import { CreateBuyDTO } from '../../../../model/buy/dto/CreateBuyDTO';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-detailed-ad',
@@ -20,7 +21,8 @@ export class DetailedAdComponent implements OnInit {
     private adsService: AdsService,
     private router: Router,
     private auth: AuthService,
-    private buyService: BuyService
+    private buyService: BuyService,
+    private location: Location
   ) {}
 
   ngOnInit(): void {
@@ -70,6 +72,6 @@ export class DetailedAdComponent implements OnInit {
   }
 
   back(): void {
-    this.router.navigate(['']);
+    this.location.back();
   }
 }

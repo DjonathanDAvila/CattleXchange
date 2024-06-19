@@ -21,11 +21,10 @@ export class BuyService {
     return this.http.post<any>(`${this.BASE_URL}`, dto);
   }
 
-  findByUser(userId: string): Observable<CattleBuy[]> {
+  findAllByUser(): Observable<CattleBuy[]> {
     return this.http
       .get<{ content: CattleBuy[] }>(`${this.BASE_URL}/user`, {
         params: {
-          userId: userId,
           page: '0',
           size: '10',
         },

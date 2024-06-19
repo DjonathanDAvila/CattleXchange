@@ -8,11 +8,16 @@ import com.cattle.xchange.domain.itemBuy.CattleItemBuyService;
 import com.cattle.xchange.domain.itemBuy.dtos.ItemBuyInsertDTO;
 import com.cattle.xchange.domain.user.User;
 import com.cattle.xchange.domain.user.UserService;
+import com.cattle.xchange.infra.config.security.JwtService;
 import com.cattle.xchange.infra.exception.BadRequestException;
+import io.jsonwebtoken.Jwt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,6 +36,7 @@ public class CattleBuyService {
     @Autowired
     private CattleItemBuyService cattleItemBuyService;
 
+
     public List<CattleBuy> findAll() {
         return cattleBuyRepository.findAll();
     }
@@ -40,12 +46,10 @@ public class CattleBuyService {
     }
 
     public CattleBuy create(CattleBuyInsertDTO cattleBuyInsertDTO) {
-        // Verifica se o código do usuário é fornecido
         if (cattleBuyInsertDTO.codUser() == null) {
             throw new BadRequestException("O código do usuário é obrigatório.");
         }
 
-        // Verifica se a data de compra é fornecida
         if (cattleBuyInsertDTO.dataBuy() == null) {
             throw new BadRequestException("A data de compra é obrigatória.");
         }
@@ -94,7 +98,17 @@ public class CattleBuyService {
         return savedCattleBuy;
     }
 
-    public Page<CattleBuy> findByUserId(UUID userId, Pageable pageable){
-        return cattleBuyRepository.findByUserId(userId, pageable);
+    @Transactional(readOnly = true)
+    public Page<CattleBuy> findAllByCurrentUser(Pageable pageable) {
+        User currentUser = userService.getCurrentUser();
+        if (currentUser != null) {
+            User user = userService.findUserByEmail(currentUser.getEmail());
+
+            if (user != null) {
+                return cattleBuyRepository.findAllByUser(user, pageable);
+            }
+        }
+
+        throw new BadRequestException("User not found.");
     }
 }

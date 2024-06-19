@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { BuyService } from '../../../../../services/buy/buy.service';
-import { CattleBuy } from '../../../../../model/buy/cattleBuy';
-import { Observable } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ItemBuy } from '../../../../../model/buy/item-buy';
+import { Observable } from 'rxjs';
+
+import { CattleBuy } from '../../../../../model/buy/cattleBuy';
+import { BuyService } from '../../../../../services/buy/buy.service';
 
 @Component({
   selector: 'app-my-buys',
@@ -25,9 +25,7 @@ export class MyBuysComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute
   ) {
-    this.cattleBuys = buyService.findByUser(
-      'fde0783e-2b54-11ef-9260-0ccc47e06b45'
-    );
+    this.cattleBuys = buyService.findAllByUser();
   }
 
   ngOnInit(): void {}
