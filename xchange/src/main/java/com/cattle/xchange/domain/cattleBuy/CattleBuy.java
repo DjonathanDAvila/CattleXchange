@@ -32,7 +32,7 @@ public class CattleBuy {
     @Column(name = "bd_totalvalue")
     private double totalValue;
 
-    @OneToMany(mappedBy = "cattleBuy", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "cattleBuy", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<CattleItemBuy> cattleItemBuyList;
 
     public CattleBuy(User user, Date dateBuy, double totalValue) {
