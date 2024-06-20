@@ -51,50 +51,60 @@ public class CattleBuyService {
         }
         User user = userService.findUserById(cattleBuyInsertDTO.codUser());
 
-        double totalValue = 0;
+
         CattleBuy newCattleBuy = new CattleBuy(
                 user,
                 cattleBuyInsertDTO.dataBuy(),
-                totalValue
+                0    // totalValue
         );
-        CattleBuy savedCattleBuy = cattleBuyRepository.save(newCattleBuy);
 
 
-        List<UUID> listCodAds = cattleBuyInsertDTO.listCodAds();
-        List<ItemBuyInsertDTO> itemBuyInsertDTOList = new ArrayList<>();
+        List<CattleItemBuy> cattleItemBuys = getCattleItemBuyListByUUIDs(cattleBuyInsertDTO.listCodAds()
+                                                                        , newCattleBuy);
+
+        double totalValue = getTotalValueByCattleBuyList(cattleItemBuys);
+
+        newCattleBuy.setTotalValue(totalValue);
+        newCattleBuy.setCattleItemBuyList(cattleItemBuys);
 
 
-        List<CattleItemBuy> cattleItemBuys = new ArrayList<>();
+        cattleBuyRepository.save(newCattleBuy);
 
-        for (UUID codAd : listCodAds) {
-            Optional<CattleAd> optionalCattleAd = cattleAdService.findCattleAdById(codAd);
-
-            optionalCattleAd.ifPresent(cattleAd -> {
-                ItemBuyInsertDTO newItemInsertDTO = new ItemBuyInsertDTO(
-                        newCattleBuy,
-                        cattleAd,
-                        cattleAd.getUnitValue()
-                );
-
-                CattleItemBuy newItemBuy = new CattleItemBuy(
-                        newCattleBuy,
-                        cattleAd,
-                        cattleAd.getUnitValue()
-                );
-
-                itemBuyInsertDTOList.add(newItemInsertDTO);
-                cattleItemBuys.add(newItemBuy);
-            });
-        }
-
-
-        savedCattleBuy.setTotalValue(cattleItemBuyService.createCattleItemBuy(itemBuyInsertDTOList));
-        savedCattleBuy.setCattleItemBuyList(cattleItemBuys);
-        cattleBuyRepository.save(savedCattleBuy);
-        return savedCattleBuy;
+        return newCattleBuy;
     }
 
     public Page<CattleBuy> findByUserId(UUID userId, Pageable pageable){
         return cattleBuyRepository.findByUserId(userId, pageable);
+    }
+
+    private List<CattleItemBuy> getCattleItemBuyListByUUIDs(List<UUID> cattleAdList, CattleBuy cattleBuy){
+        List<CattleItemBuy> cattleItemBuysList = new ArrayList<>();
+
+
+        for (UUID codAd : cattleAdList) {
+            CattleAd cattleAd = cattleAdService.findCattleAdById(codAd).get();
+
+            if (cattleAd != null){
+                CattleItemBuy newItemBuy = new CattleItemBuy(
+                        cattleBuy,
+                        cattleAd,
+                        cattleAd.getUnitValue() * cattleAd.getQuantity()
+                );
+
+                cattleItemBuysList.add(newItemBuy);
+            }
+        }
+
+        return cattleItemBuysList;
+    }
+
+    private double getTotalValueByCattleBuyList(List<CattleItemBuy> cattleItemBuys){
+        double totalValueReturn = 0;
+
+        for (var cattleItemBuy : cattleItemBuys) {
+            totalValueReturn += cattleItemBuy.getValueAd();
+        }
+
+        return totalValueReturn;
     }
 }
