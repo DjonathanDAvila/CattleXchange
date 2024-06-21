@@ -2,6 +2,7 @@ package com.cattle.xchange.domain.cattleBuy;
 
 import com.cattle.xchange.domain.cattleAd.CattleAd;
 import com.cattle.xchange.domain.cattleAd.CattleAdService;
+import com.cattle.xchange.domain.cattleAd.enums.CattleStatusEnum;
 import com.cattle.xchange.domain.cattleBuy.dtos.CattleBuyInsertDTO;
 import com.cattle.xchange.domain.itemBuy.CattleItemBuy;
 import com.cattle.xchange.domain.itemBuy.CattleItemBuyService;
@@ -105,6 +106,7 @@ public class CattleBuyService {
                         cattleAd.getUnitValue() * cattleAd.getQuantity()
                 );
 
+                cattleAdService.updateStatus(cattleAd.getId(), CattleStatusEnum.SOLDED);
                 cattleItemBuysList.add(newItemBuy);
             }
         }
