@@ -103,12 +103,11 @@ public class CattleAdController {
     @Operation(summary = "Find All Cattle Ads by user",
             description = "Response is a list of Cattle Ads by user with pagination")
     @GetMapping("/user")
-    public ResponseEntity<Page<CattleAdMinDTO>> findByUser(
-            @RequestParam UUID userId,
+    public ResponseEntity<Page<CattleAdMinDTO>> findAllByCurrentUser(
             Pageable pageable
     ) {
         return ResponseEntity.ok(
-                _cattleService.findByUser(userId, pageable)
+                _cattleService.findAllByCurrentUser(pageable)
                         .map((c) -> new CattleAdMinDTO(c, _userService.findUserById(c.getUserCod())))
         );
     }
