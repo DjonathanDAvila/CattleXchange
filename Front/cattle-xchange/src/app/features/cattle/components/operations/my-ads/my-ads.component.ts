@@ -17,9 +17,7 @@ export class MyOperationsComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute
   ) {
-    this.cattleAds = adsService.findByUser(
-      'fde0783e-2b54-11ef-9260-0ccc47e06b45'
-    );
+    this.cattleAds = adsService.findByUser();
   }
 
   readonly displayedColumns = ['title', 'creationDate', 'status', 'actions'];
