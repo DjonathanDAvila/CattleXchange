@@ -53,10 +53,8 @@ public class CattleBuyService {
                     throw new BadRequestException("A data de compra é obrigatória.");
                 }
 
-                User user = userService.findUserById(buyer.getId());
-
                 CattleBuy newCattleBuy = new CattleBuy(
-                        user,
+                        buyer,
                         cattleBuyInsertDTO.dataBuy(),
                         0    // totalValue
                 );
