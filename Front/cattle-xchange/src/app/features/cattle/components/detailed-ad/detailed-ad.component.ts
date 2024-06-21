@@ -55,14 +55,16 @@ export class DetailedAdComponent implements OnInit {
     const buyer = this.auth.getToken();
     if (buyer && ad) {
       const buyDTO: CreateBuyDTO = {
-        codUser: ad.announcer.id,
+        codUser: buyer,
         listCodAds: [ad.id],
         dataBuy: new Date()
       };
 
+      console.log(buyer);
+
       this.buyService.createBuy(buyDTO).subscribe({
         next: (response) => {
-          console.log('Buy successful', response);
+          console.log(buyDTO, response);
         },
         error: (err) => {
           console.error('Error during buy', err);
