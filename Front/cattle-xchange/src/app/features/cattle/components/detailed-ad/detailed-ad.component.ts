@@ -6,6 +6,8 @@ import { AuthService } from '../../../../services/auth/auth.service';
 import { BuyService } from '../../../../services/buy/buy.service';
 import { CreateBuyDTO } from '../../../../model/buy/dto/CreateBuyDTO';
 import { Location } from '@angular/common';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { CattleAdStatus } from '../../../../model/cattleAd/enum/cattleAdStatus';
 
 @Component({
   selector: 'app-detailed-ad',
@@ -15,6 +17,7 @@ import { Location } from '@angular/common';
 export class DetailedAdComponent implements OnInit {
   ad: CattleAd | undefined;
   totalbuyValue: number = 0;
+  CattleAdStatus = CattleAdStatus;
 
   constructor(
     private route: ActivatedRoute,
@@ -22,7 +25,8 @@ export class DetailedAdComponent implements OnInit {
     private router: Router,
     private auth: AuthService,
     private buyService: BuyService,
-    private location: Location
+    private location: Location,
+    private snackBar: MatSnackBar,
   ) {}
 
   ngOnInit(): void {
@@ -32,6 +36,7 @@ export class DetailedAdComponent implements OnInit {
       if (adId) {
         this.adsService.findById(adId).subscribe(data => {
           this.ad = data;
+          console.log(this.ad.status);
           this.totalbuyValue = this.calculateBuy(this.ad.unitValue, this.ad.quantity);
         });
       }
@@ -48,7 +53,8 @@ export class DetailedAdComponent implements OnInit {
 
   protected buy(ad: CattleAd): void {
     if (!this.auth.isAuthenticated()) {
-      this.router.navigate(['/login']);
+      const snackBarRef = this.snackBar.open('É necessário estar logado para poder comprar!', 'FAZER LOGIN', { duration: 7000 });
+      snackBarRef.onAction().subscribe(() => this.router.navigate(['/login']));
       return;
     }
 
@@ -60,17 +66,20 @@ export class DetailedAdComponent implements OnInit {
         dataBuy: new Date()
       };
 
-      console.log(buyer);
-
       this.buyService.createBuy(buyDTO).subscribe({
-        next: (response) => {
-          console.log(buyDTO, response);
-        },
-        error: (err) => {
-          console.error('Error during buy', err);
-        }
+        next: () => this.onSuccess(),
+        error: (err) => this.onError(err.message)
       });
     }
+  }
+
+  private onSuccess() {
+    this.snackBar.open('Compra realizada com sucesso!', '', { duration: 7000 });
+    this.router.navigate(['operations/myBuys'])
+  }
+
+  private onError(error: string) {
+    this.snackBar.open(`Não foi possível realizar sua compra! ${error}`, '', { duration: 7000 });
   }
 
   back(): void {

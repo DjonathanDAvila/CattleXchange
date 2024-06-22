@@ -6,6 +6,7 @@ import { DetailedAdComponent } from './components/detailed-ad/detailed-ad.compon
 import { HomeComponent } from './components/home/home.component';
 import { MyOperationsComponent } from './components/operations/my-ads/my-ads.component';
 import { MyBuysComponent } from './components/operations/my-buys/my-buys.component';
+import { AnnounceComponent } from './components/announce/announce.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -13,6 +14,7 @@ const routes: Routes = [
   { path: 'ad-details/:id', component: DetailedAdComponent },
   { path: 'operations/myAds', component: MyOperationsComponent },
   { path: 'operations/myBuys', component: MyBuysComponent },
+  { path: 'announce', component: AnnounceComponent },
 ];
 
 @NgModule({
