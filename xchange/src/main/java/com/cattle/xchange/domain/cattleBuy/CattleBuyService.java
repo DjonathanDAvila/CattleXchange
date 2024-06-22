@@ -4,6 +4,7 @@ import com.cattle.xchange.domain.cattleAd.CattleAd;
 import com.cattle.xchange.domain.cattleAd.CattleAdService;
 import com.cattle.xchange.domain.cattleAd.enums.CattleStatusEnum;
 import com.cattle.xchange.domain.cattleBuy.dtos.CattleBuyInsertDTO;
+import com.cattle.xchange.domain.cattleBuy.enums.CattleBuyStatus;
 import com.cattle.xchange.domain.itemBuy.CattleItemBuy;
 import com.cattle.xchange.domain.itemBuy.CattleItemBuyService;
 import com.cattle.xchange.domain.user.User;
@@ -90,6 +91,22 @@ public class CattleBuyService {
 
         throw new BadRequestException("User not found.");
     }
+
+    public CattleBuy cancelBuy(UUID cattleBuyId){
+        var cattleBuy = findById(cattleBuyId);
+
+        if (cattleBuy.getStatus() == CattleBuyStatus.CANCELED)
+            throw new BadRequestException("Cattle Buy is canceled.");
+
+        for (CattleItemBuy item : cattleBuy.getCattleItemBuyList()) {
+            cattleAdService.updateStatus(item.getCattleAd().getId(), CattleStatusEnum.ACTIVE);
+        }
+
+        cattleBuy.setStatus(CattleBuyStatus.CANCELED);
+
+        return cattleBuyRepository.save(cattleBuy);
+    }
+
 
     private List<CattleItemBuy> getCattleItemBuyListByUUIDs(List<UUID> cattleAdList, CattleBuy cattleBuy) {
         List<CattleItemBuy> cattleItemBuysList = new ArrayList<>();
