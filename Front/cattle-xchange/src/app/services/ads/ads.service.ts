@@ -42,11 +42,10 @@ export class AdsService {
     return this.http.get<CattleAd>(`${this.BASE_URL}/${id}`);
   }
 
-  findByUser(userId: string): Observable<CattleAd[]> {
+  findByUser(): Observable<CattleAd[]> {
     return this.http
       .get<{ content: CattleAd[] }>(`${this.BASE_URL}/user`, {
         params: {
-          userId: userId,
           page: '0',
           size: '10',
         },
