@@ -111,4 +111,31 @@ public class CattleAdController {
                         .map((c) -> new CattleAdMinDTO(c, _userService.findUserById(c.getUserCod())))
         );
     }
+
+
+    @PreAuthorize("hasRole('ROLE_USER')")
+    @PostMapping
+    public ResponseEntity<CattleAdMinDTO> insert(@RequestBody CattleAdInsertDTO dto) {
+        var user = _userService.findUserById(dto.userCod());
+
+        if (user == null)
+            return ResponseEntity.notFound().build();
+
+
+        return ResponseEntity.ok(
+                new CattleAdMinDTO(_cattleService.insert(
+                        dto.title(),
+                        dto.desc(),
+                        dto.unitValue(),
+                        dto.quantity(),
+                        dto.breed(),
+                        dto.sex(),
+                        dto.userCod(),
+                        dto.city(),
+                        dto.state(),
+                        dto.status(),
+                        dto.cattleAdImages()
+                ), user)
+        );
+    }
 }
