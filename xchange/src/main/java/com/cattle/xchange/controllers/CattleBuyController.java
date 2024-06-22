@@ -61,4 +61,13 @@ public class CattleBuyController {
                     new CattleBuyMinDTO(cattleBuyService.create(cattleBuyInsertDTO))
         );
     }
+
+    @Operation(summary = "Cancel Cattle Buy",
+            description = "Response is a Cattle Buy Object.")
+    @PatchMapping("/{id}")
+    public ResponseEntity<CattleBuyMinDTO> cancelBuy(@PathVariable UUID id) {
+        return ResponseEntity.ok(
+                new CattleBuyMinDTO(cattleBuyService.cancelBuy(id))
+        );
+    }
 }

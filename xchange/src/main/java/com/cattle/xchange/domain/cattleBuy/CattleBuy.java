@@ -1,5 +1,6 @@
 package com.cattle.xchange.domain.cattleBuy;
 
+import com.cattle.xchange.domain.cattleBuy.enums.CattleBuyStatus;
 import com.cattle.xchange.domain.itemBuy.CattleItemBuy;
 import com.cattle.xchange.domain.user.User;
 import jakarta.persistence.*;
@@ -26,6 +27,10 @@ public class CattleBuy {
     @JoinColumn(name = "bd_coduser")
     private User user;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "bd_status")
+    private CattleBuyStatus status;
+
     @Column(name = "bd_datebuy")
     private Date dateBuy;
 
@@ -37,6 +42,7 @@ public class CattleBuy {
 
     public CattleBuy(User user, Date dateBuy, double totalValue) {
         this.user = user;
+        this.status = CattleBuyStatus.ACTIVE;
         this.dateBuy = dateBuy;
         this.totalValue = totalValue;
     }
