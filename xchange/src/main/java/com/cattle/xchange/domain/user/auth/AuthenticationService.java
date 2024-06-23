@@ -29,6 +29,7 @@ public class AuthenticationService {
         var user = User.builder()
                 .name(request.firstName())
                 .lastName(request.lastName())
+                .document(request.document())
                 .email(request.email())
                 .password(passwordEncoder.encode(request.password()))
                 .creationDate(LocalDate.now(ZoneId.of("America/Sao_Paulo")))
