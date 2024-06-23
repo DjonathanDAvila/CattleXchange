@@ -5,21 +5,47 @@
       <form [formGroup]="form" class="form" (ngSubmit)="login()">
         <mat-form-field class="form_field">
           <mat-label>Email</mat-label>
-          <input type="email" matInput placeholder="Ex. some@example.com" formControlName="email">
-          <mat-hint *ngIf="form.controls['email'].invalid && form.controls['email'].touched">Invalid email</mat-hint>
+          <input
+            type="email"
+            matInput
+            placeholder="Ex. some@example.com"
+            formControlName="email"
+          />
+          <mat-hint
+            *ngIf="
+              form.controls['email'].invalid && form.controls['email'].touched
+            "
+            >Invalid email</mat-hint
+          >
         </mat-form-field>
 
         <mat-form-field class="form_field">
           <mat-label>Senha</mat-label>
-          <input type="password" matInput placeholder="password" formControlName="password">
+          <input
+            type="password"
+            matInput
+            placeholder="password"
+            formControlName="password"
+          />
         </mat-form-field>
+
+        <div class="forgot-password">
+          <a href="/userRegistration">Cadastrar-se</a>
+        </div>
 
         <div class="forgot-password">
           <a href="/forgot-password">Esqueci minha senha</a>
         </div>
 
         <mat-card-actions class="button-actions">
-          <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">Login</button>
+          <button
+            mat-raised-button
+            color="primary"
+            type="submit"
+            [disabled]="form.invalid"
+          >
+            Login
+          </button>
         </mat-card-actions>
       </form>
     </mat-card-content>

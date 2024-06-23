@@ -15,6 +15,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { HomeComponent } from './components/home/home.component';
 import { MyOperationsComponent } from './components/operations/my-ads/my-ads.component';
 import { MyBuysComponent } from './components/operations/my-buys/my-buys.component';
+import { UserRegistrationComponent } from './components/user/user-registration/user-registration.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { MyBuysComponent } from './components/operations/my-buys/my-buys.compone
     LoginComponent,
     DetailedAdComponent,
     MyOperationsComponent,
-    MyBuysComponent
+    MyBuysComponent,
+    UserRegistrationComponent
   ],
   imports: [
     CommonModule,

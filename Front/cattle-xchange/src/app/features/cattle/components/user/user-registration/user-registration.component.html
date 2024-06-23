@@ -1,0 +1,90 @@
+<header>
+  <app-header></app-header>
+</header>
+
+<main>
+  <mat-card class="container">
+    <mat-card-content>
+      <mat-toolbar color="primary">
+        <span>Cadastro de usuário</span>
+      </mat-toolbar>
+
+      <form [formGroup]="form" class="min-width">
+        <div class="fields">
+
+            <div class="form-row">
+              <!--name-->
+              <mat-form-field class="form-field">
+                <mat-label>Primeiro nome</mat-label>
+                <input matInput #input required formControlName="firstName" />
+              </mat-form-field>
+
+              <!--lastName-->
+              <mat-form-field class="form-field">
+                <mat-label>Sobrenome</mat-label>
+                <input matInput #input required formControlName="lastName" />
+              </mat-form-field>
+
+              <!--document-->
+              <mat-form-field class="form-field">
+                <mat-label>CPF</mat-label>
+                <input matInput #input required formControlName="document" />
+              </mat-form-field>
+            </div>
+
+            <div class="form-row">
+              <!--email-->
+              <mat-form-field class="form-field">
+                <mat-label>Informe seu email</mat-label>
+                <input
+                  matInput
+                  type="email"
+                  (blur)="updateErrorMessage()"
+                  required
+                  formControlName="email"
+                />
+                <mat-error *ngIf="email.invalid">{{ errorMessage }}</mat-error>
+              </mat-form-field>
+
+              <!--password-->
+              <mat-form-field class="form-field">
+                <mat-label>Senha</mat-label>
+                <input
+                  matInput
+                  [type]="hide ? 'password' : 'text'"
+                  formControlName="password"
+                />
+                <button
+                  mat-icon-button
+                  matSuffix
+                  (click)="hide = !hide"
+                  [attr.aria-label]="'Hide password'"
+                  [attr.aria-pressed]="hide"
+                  #input
+                  required
+                >
+                  <mat-icon>{{
+                    hide ? "visibility_off" : "visibility"
+                  }}</mat-icon>
+                </button>
+              </mat-form-field>
+            </div>
+
+            <section class="botoes">
+              <button mat-flat-button (click)="onCancel()" color="secundary">
+                Cancelar
+              </button>
+              <button mat-flat-button (click)="onSubmit()" color="primary">
+                Salvar
+              </button>
+            </section>
+
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</main>
+
+<footer>
+  <app-footer></app-footer>
+</footer>
