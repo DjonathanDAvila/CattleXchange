@@ -52,4 +52,11 @@ export class AdsService {
       })
       .pipe(map((response) => response.content));
   }
+
+  deleteById(id: string) {
+    console.log(id);
+    return this.http
+      .delete(`${this.BASE_URL}/${id}`)
+      .subscribe(() => (console.log('Delete successful')));
+  }
 }

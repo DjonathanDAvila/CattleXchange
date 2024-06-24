@@ -1,3 +1,11 @@
+mat-toolbar{
+  border-radius: 20px 20px 0 0;
+}
+
+mat-card{
+  padding: 20px;
+}
+
 .item-row {
   display: flex;
   align-items: center;
@@ -12,4 +20,11 @@
 
 .item-actions {
   margin-left: 16px;
+}
+
+footer {
+  bottom: 0;
+  position: fixed;
+  width: 100%;
+  text-align: center;
 }
