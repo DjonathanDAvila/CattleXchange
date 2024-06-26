@@ -1,9 +1,9 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
-
 import { CattleAd } from '../../model/cattleAd/cattle/cattleAd';
 import { CattleAdsPage } from '../../model/cattleAd/page/cattlePage';
+import { CattleAdInsertDTO } from '../../model/cattleAd/cattle/dtos/cattle-ad-insert-dto';
 
 @Injectable({
   providedIn: 'root',
@@ -38,7 +38,7 @@ export class AdsService {
     return this.http.get<CattleAdsPage>(`${this.BASE_URL}/search`, { params });
   }
 
-  findById(id: string) {
+  findById(id: string): Observable<CattleAd> {
     return this.http.get<CattleAd>(`${this.BASE_URL}/${id}`);
   }
 
@@ -51,5 +51,9 @@ export class AdsService {
         },
       })
       .pipe(map((response) => response.content));
+  }
+
+  create(ad: CattleAdInsertDTO): Observable<CattleAd> {
+    return this.http.post<CattleAd>(this.BASE_URL, ad);
   }
 }
