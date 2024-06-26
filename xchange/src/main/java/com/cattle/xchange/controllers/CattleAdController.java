@@ -6,11 +6,13 @@ import com.cattle.xchange.domain.cattleAd.dtos.CattleAdInsertDTO;
 import com.cattle.xchange.domain.cattleAd.dtos.CattleAdMinDTO;
 import com.cattle.xchange.domain.cattleAd.enums.BreedEnum;
 import com.cattle.xchange.domain.cattleAd.enums.SexEnum;
+import com.cattle.xchange.domain.user.User;
 import com.cattle.xchange.domain.user.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -116,26 +118,24 @@ public class CattleAdController {
     @PreAuthorize("hasRole('ROLE_USER')")
     @PostMapping
     public ResponseEntity<CattleAdMinDTO> insert(@RequestBody CattleAdInsertDTO dto) {
-        var user = _userService.findUserById(dto.userCod());
+        User currentUser = _userService.getCurrentUser();
 
-        if (user == null)
-            return ResponseEntity.notFound().build();
-
-
-        return ResponseEntity.ok(
-                new CattleAdMinDTO(_cattleService.insert(
-                        dto.title(),
-                        dto.desc(),
-                        dto.unitValue(),
-                        dto.quantity(),
-                        dto.breed(),
-                        dto.sex(),
-                        dto.userCod(),
-                        dto.city(),
-                        dto.state(),
-                        dto.status(),
-                        dto.cattleAdImages()
-                ), user)
+        return ResponseEntity.status(HttpStatus.CREATED).body(
+                new CattleAdMinDTO(
+                        _cattleService.insert(
+                                currentUser,
+                                dto.title(),
+                                dto.desc(),
+                                dto.unitValue(),
+                                dto.quantity(),
+                                dto.breed(),
+                                dto.sex(),
+                                dto.city(),
+                                dto.state(),
+                                dto.cattleAdImages()
+                        ),
+                        currentUser
+                )
         );
     }
 }
