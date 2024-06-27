@@ -8,7 +8,13 @@ import { User } from '../../model/user/user';
 })
 export class UserService {
 
+  private readonly BASE_URL = 'http://localhost:8080/auth/register';
+
   constructor(
     private http: HttpClient
   ) { }
+
+  save(record: Partial<User>) {
+    return this.http.post<User>(this.BASE_URL, record);
+  }
 }

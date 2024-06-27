@@ -56,4 +56,12 @@ export class AdsService {
   create(ad: CattleAdInsertDTO): Observable<CattleAd> {
     return this.http.post<CattleAd>(this.BASE_URL, ad);
   }
+
+  deleteById(id: string) {
+    console.log(id);
+    return this.http
+      .delete(`${this.BASE_URL}/${id}`)
+      .subscribe(() => (console.log('Delete successful')));
+  }
+  
 }

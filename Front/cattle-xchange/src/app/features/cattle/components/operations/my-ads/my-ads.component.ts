@@ -27,4 +27,9 @@ export class MyOperationsComponent implements OnInit {
   onDetails(adId: string) {
     this.router.navigate(['ad-details', adId]);
   }
+
+  onDelete(id: string) {
+    console.log(id)
+    this.adsService.deleteById(id);
+  }
 }

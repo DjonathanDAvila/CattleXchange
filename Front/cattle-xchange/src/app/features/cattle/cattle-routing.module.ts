@@ -7,6 +7,8 @@ import { HomeComponent } from './components/home/home.component';
 import { MyOperationsComponent } from './components/operations/my-ads/my-ads.component';
 import { MyBuysComponent } from './components/operations/my-buys/my-buys.component';
 import { AnnounceComponent } from './components/announce/announce.component';
+import { UserRegistrationComponent } from './components/user/user-registration/user-registration.component';
+
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -15,6 +17,7 @@ const routes: Routes = [
   { path: 'operations/myAds', component: MyOperationsComponent },
   { path: 'operations/myBuys', component: MyBuysComponent },
   { path: 'announce', component: AnnounceComponent },
+  { path: 'userRegistration', component: UserRegistrationComponent },
 ];
 
 @NgModule({
