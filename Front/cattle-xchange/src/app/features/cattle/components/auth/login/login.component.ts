@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+
 import { AuthService } from '../../../../../services/auth/auth.service';
 
 
@@ -15,7 +17,8 @@ export class LoginComponent {
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private snackBar: MatSnackBar
   ) {
     this.form = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -27,8 +30,11 @@ export class LoginComponent {
     if (this.form.valid) {
       const { email, password } = this.form.value;
       this.authService.login(email, password).subscribe({
-        next: () => this.router.navigate(['/']),
-        error: (err) => console.error('Login failed', err)
+        next: () => {
+            this.snackBar.open('Login feito com sucesso!', '', { duration: 5000 });
+            this.router.navigate(['/']);
+        },
+        error: (err) => this.snackBar.open(`Erro ao fazer login! Erro: ${err}`, '', { duration: 5000 })
       });
     }
   }

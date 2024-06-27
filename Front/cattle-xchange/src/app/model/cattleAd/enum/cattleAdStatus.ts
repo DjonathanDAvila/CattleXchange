@@ -1,5 +1,5 @@
 export enum CattleAdStatus {
-  ACTIVE,
-  INACTIVE,
-  SOLDED
+  ACTIVE = 'ACTIVE',
+  INACTIVE = 'INACTIVE',
+  SOLDED = 'SOLDED'
 }

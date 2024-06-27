@@ -4,18 +4,14 @@
   </div>
   <div class="nav-links">
     <span (click)="navigateTo('')">HOME</span>
-    <span (click)="navigateTo('/anounce')">ANUNCIAR</span>
+    <span (click)="navigateOrSnack('/announce')">ANUNCIAR</span>
     <span>
       <button class="nav-links" mat-button [matMenuTriggerFor]="menu">
         OPERAÇÕES
       </button>
       <mat-menu #menu="matMenu">
-        <button (click)="navigateTo('/operations/myAds')" mat-menu-item>
-          Meus Anúncios
-        </button>
-        <button (click)="navigateTo('/operations/myBuys')" mat-menu-item>
-          Minhas Compras
-        </button>
+        <button mat-menu-item (click)="navigateOrSnack('/operations/myAds')">Meus Anúncios</button>
+        <button mat-menu-item (click)="navigateOrSnack('/operations/myBuys')">Minhas Compras</button>
       </mat-menu>
     </span>
     <ng-container *ngIf="!isAuthenticated">

@@ -1,0 +1,40 @@
+.title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.card {
+  width: 60%;
+  margin: auto;
+  margin-top: 20px;
+  margin-bottom: 50px;
+  padding: 30px;
+}
+
+.ad-info {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.ad-info > .title-form-field {
+  width: 70%;
+}
+
+.ad-info > .desc-form-field {
+  width: 97.2%;
+}
+
+.button-announce {
+  font-size: large;
+  height: 40px;
+  width: 180px;
+  margin-top: 10px;
+}
+
+.medium-form-field {
+  width: 30.2%;
+}

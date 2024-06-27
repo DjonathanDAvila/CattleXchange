@@ -37,16 +37,34 @@ public class CattleAdService {
     }
 
     @Transactional
-    public CattleAd insert(String title, String desc, double unitValue, int quantity, BreedEnum breed, SexEnum sex, UUID userCod, String city, String state, CattleStatusEnum status, List<CattleAdImageInsertDTO> imagesDTO) {
-
-        var cattle = new CattleAd(
-                null, title, desc, unitValue, quantity, breed, sex, userCod, city, state, LocalDate.now(), status, new ArrayList<>()
-        );
+    public CattleAd insert(
+            User currentUser,
+            String title,
+            String desc,
+            double unitValue,
+            int quantity,
+            BreedEnum breed,
+            SexEnum sex,
+            String city,
+            String state,
+            List<CattleAdImageInsertDTO> imagesDTO
+    ) {
+        var cattle = new CattleAd();
+        cattle.setTitle(title);
+        cattle.setDesc(desc);
+        cattle.setUnitValue(unitValue);
+        cattle.setQuantity(quantity);
+        cattle.setBreed(breed);
+        cattle.setSex(sex);
+        cattle.setCity(city);
+        cattle.setState(state);
+        cattle.setStatus(CattleStatusEnum.ACTIVE);
+        cattle.setAdDate(LocalDate.now());
+        cattle.setUserCod(currentUser.getId());
 
         var images = imagesDTO.stream()
                 .map(CattleAdImage::new)
                 .toList();
-
 
         for (CattleAdImage image : images) {
             image.setCattleAd(cattle);

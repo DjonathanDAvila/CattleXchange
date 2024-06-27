@@ -24,15 +24,9 @@ public record CattleAdInsertDTO(
         @NotBlank
         SexEnum sex,
         @NotBlank
-        UUID userCod,
-        @NotBlank
         String city,
         @NotBlank
         String state,
-        @NotBlank
-        LocalDate adDate,
-        @NotBlank
-        CattleStatusEnum status,
         @NotBlank
         List<CattleAdImageInsertDTO> cattleAdImages
 ) {

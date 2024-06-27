@@ -20,13 +20,19 @@
         <p>Cidade: {{ ad?.city }}</p>
         <p>Anunciador: {{ ad?.announcer?.name }}</p>
         <p>Valor total: <span class="total-value">R$ {{ totalbuyValue }}</span></p>
-        <button mat-raised-button class="buy-button" color="primary" (click)="buy(ad!)">
+        <button
+          mat-raised-button
+          class="buy-button"
+          color="primary"
+          (click)="buy(ad!)"
+          [disabled]="ad?.status === CattleAdStatus.SOLDED"
+        >
           Comprar
         </button>
       </div>
       <div class="right-pair">
         <p>Raça: {{ ad?.breed }}</p>
-        <p>Sexo: {{ ad?.sex != "M" ? "Fêmea" : "Macho" }}</p>
+        <p>Sexo: {{ ad?.sex !== 'M' ? 'Fêmea' : 'Macho' }}</p>
         <p>Estado: {{ ad?.state }}</p>
         <p>E-Mail: {{ ad?.announcer?.email }}</p>
       </div>

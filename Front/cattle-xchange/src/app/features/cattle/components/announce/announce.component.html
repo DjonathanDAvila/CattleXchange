@@ -1,0 +1,85 @@
+<app-header></app-header>
+<div class="title">
+  <h3>Anuncie seu lote aqui!</h3>
+</div>
+<mat-card class="card">
+  <form [formGroup]="form" class="form">
+    <div class="ad-info">
+      <mat-form-field class="title-form-field">
+        <input matInput placeholder="Título" formControlName="title" />
+      </mat-form-field>
+
+      <mat-form-field class="quantity-form-field">
+        <input
+          matInput
+          placeholder="Quantidade"
+          formControlName="quantity"
+          type="number"
+        />
+      </mat-form-field>
+    </div>
+    <div class="ad-info">
+      <mat-form-field class="desc-form-field">
+        <textarea
+          matInput
+          placeholder="Descrição"
+          formControlName="description"
+          type="text"
+        ></textarea>
+      </mat-form-field>
+    </div>
+    <div class="ad-info">
+      <mat-form-field class="title-form-field">
+        <input
+          matInput
+          placeholder="URL da imagem de seus gados"
+          formControlName="imageUrl"
+        />
+      </mat-form-field>
+
+      <mat-form-field class="form-field">
+        <mat-select formControlName="breed" placeholder="Raça">
+          <mat-option *ngFor="let breed of breeds" [value]="breed.breedName.toUpperCase()">{{ breed.breedName }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="ad-info">
+      <mat-form-field class="medium-form-field">
+        <mat-select formControlName="sex" placeholder="Sexo">
+          <mat-option value="M">Macho</mat-option>
+          <mat-option value="F">Fêmea</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="medium-form-field">
+        <mat-select formControlName="region" placeholder="Região">
+          <mat-option *ngFor="let region of regions" [value]="region.city + ' - ' + region.state">{{ region.city }} - {{ region.uf }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="medium-form-field">
+        <input
+          matInput
+          placeholder="Valor unitário"
+          formControlName="unitValue"
+          type="number"
+        />
+      </mat-form-field>
+    </div>
+
+    <div class="ad-info">
+      <mat-card-actions>
+        <button
+          mat-raised-button
+          color="primary"
+          class="button-announce"
+          (click)="annouce()"
+        >
+          Anunciar
+        </button>
+      </mat-card-actions>
+    </div>
+  </form>
+</mat-card>
+<app-footer></app-footer>

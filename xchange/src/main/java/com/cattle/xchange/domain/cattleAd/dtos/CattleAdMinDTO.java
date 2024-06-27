@@ -46,7 +46,6 @@ public record CattleAdMinDTO(
         CattleStatusEnum status,
         @NotBlank
         List<CattleAdImageMinDTO> cattleAdImages,
-
         @NotBlank
         Link cattleAdLink
 ) {

@@ -14,7 +14,7 @@
         </div>
         <div>
           <p>Quantidade: {{ ad.quantity }}</p>
-          <p>Sexo: {{ ad.sex }}</p>
+          <p>Sexo: {{ ad.sex != "M" ? "Fêmea" : "Macho" }}</p>
         </div>
       </mat-card-content>
       <div class="ad-price">
