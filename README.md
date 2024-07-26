@@ -18,17 +18,14 @@ Requisitos Funcionais
 Protótipos de Tela
 ------------------
  Home
-![www figma com_proto_XqjfRckLurtD8v3XUW9G74_Untitled_type=design node-id=4-751 t=3b38Nwpah625nlwA-0 scaling=contain page-id=0%3A1](https://github.com/DjonathanDAvila/CattleXchange/assets/123762143/d7c5edc4-25b8-4cda-b502-10ece04f2eff)
+![home](https://github.com/user-attachments/assets/e9cab88f-73a4-45d4-a133-a2ddbded3331)
 
-Cadastro usuário
-![www figma com_proto_XqjfRckLurtD8v3XUW9G74_Untitled_type=design node-id=25-194 t=3b38Nwpah625nlwA-0 scaling=min-zoom page-id=0%3A1](https://github.com/DjonathanDAvila/CattleXchange/assets/123762143/7506903b-a3aa-4211-ba7d-956e8d6816a8)
+Anúncio
+![anuncio](https://github.com/user-attachments/assets/3e0eb08e-bf1f-4c98-8968-af387a175813)
 
-Cadastro de anuncio
-![www figma com_proto_XqjfRckLurtD8v3XUW9G74_Untitled_type=design node-id=25-194 t=3b38Nwpah625nlwA-0 scaling=min-zoom page-id=0%3A1 (1)](https://github.com/DjonathanDAvila/CattleXchange/assets/123762143/d7a15fd9-c679-4f5c-816f-97715ff19dc7)
-![www figma com_proto_XqjfRckLurtD8v3XUW9G74_Untitled_type=design node-id=25-194 t=3b38Nwpah625nlwA-0 scaling=min-zoom page-id=0%3A1 (2)](https://github.com/DjonathanDAvila/CattleXchange/assets/123762143/4ecb3f1c-b9e6-4ee8-aa88-72c8428abdb0)
+Operações/Meus Anúncios
+![meusAnuncios](https://github.com/user-attachments/assets/a581d837-6c7f-4aec-a0be-09729b9c28e3)
 
-Anuncio
-![www figma com_proto_XqjfRckLurtD8v3XUW9G74_Untitled_type=design node-id=16-76 t=3b38Nwpah625nlwA-0 scaling=min-zoom page-id=0%3A1](https://github.com/DjonathanDAvila/CattleXchange/assets/123762143/4cc57bbe-b7a1-4094-aad2-a328513e7687)
 
 ## Tecnologias
 
